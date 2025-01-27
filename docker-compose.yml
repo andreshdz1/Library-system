@@ -1,0 +1,28 @@
+version: '3'
+services:
+  database:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: libreria
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    depends_on:
+      - database
+    environment:
+      DATABASE_URL: postgres://postgres:admin@database/libreria
+    ports:
+      - "3000:3000"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - backend
