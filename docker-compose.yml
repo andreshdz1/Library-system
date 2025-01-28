@@ -8,17 +8,26 @@ services:
       POSTGRES_PASSWORD: admin
     volumes:
       - ./pgdata:/var/lib/postgresql/data
+      - ./backup_file.sql:/docker-entrypoint-initdb.d/backup_file.sql
     ports:
       - "5432:5432"
+    networks:
+      - app-network
 
   backend:
     build: ./backend
     depends_on:
       - database
     environment:
-      DATABASE_URL: postgres://postgres:admin@database/libreria
+      DB_HOST: database
+      DB_PORT: 5432
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin
+      DB_NAME: libreria
     ports:
       - "3000:3000"
+    networks:
+      - app-network
 
   frontend:
     build: ./frontend
@@ -26,3 +35,9 @@ services:
       - "8080:8080"
     depends_on:
       - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

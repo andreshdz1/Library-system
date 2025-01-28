@@ -1,10 +1,10 @@
-FROM node:14
+FROM node:16
 
 WORKDIR /app/frontend
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm install --legacy-peer-deps
 
 COPY . .
 
