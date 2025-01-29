@@ -18,47 +18,45 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: libreria; Type: SCHEMA; Schema: -; Owner: dresan
+-- Name: public; Type: SCHEMA; Schema: -; Owner: postgres
 --
 
-CREATE SCHEMA libreria;
 
-
-ALTER SCHEMA libreria OWNER TO dresan;
+ALTER SCHEMA public OWNER TO postgres;
 
 --
--- Name: libros_prestados_estatus; Type: TYPE; Schema: libreria; Owner: dresan
+-- Name: libros_prestados_estatus; Type: TYPE; Schema: public; Owner: postgres
 --
 
-CREATE TYPE libreria.libros_prestados_estatus AS ENUM (
+CREATE TYPE public.libros_prestados_estatus AS ENUM (
     'entregado',
     'sin entregar'
 );
 
 
-ALTER TYPE libreria.libros_prestados_estatus OWNER TO dresan;
+ALTER TYPE public.libros_prestados_estatus OWNER TO postgres;
 
 --
--- Name: prestamos_estatus; Type: TYPE; Schema: libreria; Owner: dresan
+-- Name: prestamos_estatus; Type: TYPE; Schema: public; Owner: postgres
 --
 
-CREATE TYPE libreria.prestamos_estatus AS ENUM (
+CREATE TYPE public.prestamos_estatus AS ENUM (
     'sin entregar',
     'entregado'
 );
 
 
-ALTER TYPE libreria.prestamos_estatus OWNER TO dresan;
+ALTER TYPE public.prestamos_estatus OWNER TO postgres;
 
 SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
 --
--- Name: beneficiaries; Type: TABLE; Schema: libreria; Owner: dresan
+-- Name: beneficiaries; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE libreria.beneficiaries (
+CREATE TABLE public.beneficiaries (
     id bigint NOT NULL,
     rsocial character varying(40) NOT NULL,
     contact character varying(40) NOT NULL,
@@ -70,13 +68,13 @@ CREATE TABLE libreria.beneficiaries (
 );
 
 
-ALTER TABLE libreria.beneficiaries OWNER TO dresan;
+ALTER TABLE public.beneficiaries OWNER TO postgres;
 
 --
--- Name: beneficiarios_id_seq; Type: SEQUENCE; Schema: libreria; Owner: dresan
+-- Name: beneficiarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE libreria.beneficiarios_id_seq
+CREATE SEQUENCE public.beneficiarios_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -84,20 +82,20 @@ CREATE SEQUENCE libreria.beneficiarios_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE libreria.beneficiarios_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.beneficiarios_id_seq OWNER TO postgres;
 
 --
--- Name: beneficiarios_id_seq; Type: SEQUENCE OWNED BY; Schema: libreria; Owner: dresan
+-- Name: beneficiarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE libreria.beneficiarios_id_seq OWNED BY libreria.beneficiaries.id;
+ALTER SEQUENCE public.beneficiarios_id_seq OWNED BY public.beneficiaries.id;
 
 
 --
--- Name: books; Type: TABLE; Schema: libreria; Owner: dresan
+-- Name: books; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE libreria.books (
+CREATE TABLE public.books (
     id bigint NOT NULL,
     isbn character varying(20) NOT NULL,
     title character varying(80) NOT NULL,
@@ -114,26 +112,26 @@ CREATE TABLE libreria.books (
 );
 
 
-ALTER TABLE libreria.books OWNER TO dresan;
+ALTER TABLE public.books OWNER TO postgres;
 
 --
--- Name: clasifications; Type: TABLE; Schema: libreria; Owner: dresan
+-- Name: clasifications; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE libreria.clasifications (
+CREATE TABLE public.clasifications (
     id bigint NOT NULL,
     class character varying(50) NOT NULL,
     location character varying(40) NOT NULL
 );
 
 
-ALTER TABLE libreria.clasifications OWNER TO dresan;
+ALTER TABLE public.clasifications OWNER TO postgres;
 
 --
--- Name: clasificaciones_id_seq; Type: SEQUENCE; Schema: libreria; Owner: dresan
+-- Name: clasificaciones_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE libreria.clasificaciones_id_seq
+CREATE SEQUENCE public.clasificaciones_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -141,20 +139,20 @@ CREATE SEQUENCE libreria.clasificaciones_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE libreria.clasificaciones_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.clasificaciones_id_seq OWNER TO postgres;
 
 --
--- Name: clasificaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: libreria; Owner: dresan
+-- Name: clasificaciones_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE libreria.clasificaciones_id_seq OWNED BY libreria.clasifications.id;
+ALTER SEQUENCE public.clasificaciones_id_seq OWNED BY public.clasifications.id;
 
 
 --
--- Name: clients; Type: TABLE; Schema: libreria; Owner: dresan
+-- Name: clients; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE libreria.clients (
+CREATE TABLE public.clients (
     id bigint NOT NULL,
     name character varying(40) NOT NULL,
     email character varying(40) NOT NULL,
@@ -164,13 +162,13 @@ CREATE TABLE libreria.clients (
 );
 
 
-ALTER TABLE libreria.clients OWNER TO dresan;
+ALTER TABLE public.clients OWNER TO postgres;
 
 --
--- Name: clientes_id_seq; Type: SEQUENCE; Schema: libreria; Owner: dresan
+-- Name: clientes_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE libreria.clientes_id_seq
+CREATE SEQUENCE public.clientes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -178,20 +176,20 @@ CREATE SEQUENCE libreria.clientes_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE libreria.clientes_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.clientes_id_seq OWNER TO postgres;
 
 --
--- Name: clientes_id_seq; Type: SEQUENCE OWNED BY; Schema: libreria; Owner: dresan
+-- Name: clientes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE libreria.clientes_id_seq OWNED BY libreria.clients.id;
+ALTER SEQUENCE public.clientes_id_seq OWNED BY public.clients.id;
 
 
 --
--- Name: libros_id_seq; Type: SEQUENCE; Schema: libreria; Owner: dresan
+-- Name: libros_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE libreria.libros_id_seq
+CREATE SEQUENCE public.libros_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -199,37 +197,37 @@ CREATE SEQUENCE libreria.libros_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE libreria.libros_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.libros_id_seq OWNER TO postgres;
 
 --
--- Name: libros_id_seq; Type: SEQUENCE OWNED BY; Schema: libreria; Owner: dresan
+-- Name: libros_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE libreria.libros_id_seq OWNED BY libreria.books.id;
+ALTER SEQUENCE public.libros_id_seq OWNED BY public.books.id;
 
 
 --
--- Name: loan; Type: TABLE; Schema: libreria; Owner: dresan
+-- Name: loan; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE libreria.loan (
+CREATE TABLE public.loan (
     id bigint NOT NULL,
     amount bigint,
     departure date NOT NULL,
     entrance date NOT NULL,
     client_id bigint,
     import double precision NOT NULL,
-    status libreria.prestamos_estatus NOT NULL
+    status public.prestamos_estatus NOT NULL
 );
 
 
-ALTER TABLE libreria.loan OWNER TO dresan;
+ALTER TABLE public.loan OWNER TO postgres;
 
 --
--- Name: prestamos_id_seq; Type: SEQUENCE; Schema: libreria; Owner: dresan
+-- Name: prestamos_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE libreria.prestamos_id_seq
+CREATE SEQUENCE public.prestamos_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -237,20 +235,20 @@ CREATE SEQUENCE libreria.prestamos_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE libreria.prestamos_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.prestamos_id_seq OWNER TO postgres;
 
 --
--- Name: prestamos_id_seq; Type: SEQUENCE OWNED BY; Schema: libreria; Owner: dresan
+-- Name: prestamos_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE libreria.prestamos_id_seq OWNED BY libreria.loan.id;
+ALTER SEQUENCE public.prestamos_id_seq OWNED BY public.loan.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: libreria; Owner: dresan
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE libreria.users (
+CREATE TABLE public.users (
     id bigint NOT NULL,
     name character varying(50) NOT NULL,
     email character varying(30) DEFAULT NULL::character varying,
@@ -261,13 +259,13 @@ CREATE TABLE libreria.users (
 );
 
 
-ALTER TABLE libreria.users OWNER TO dresan;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE; Schema: libreria; Owner: dresan
+-- Name: usuarios_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE libreria.usuarios_id_seq
+CREATE SEQUENCE public.usuarios_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -275,17 +273,17 @@ CREATE SEQUENCE libreria.usuarios_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE libreria.usuarios_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.usuarios_id_seq OWNER TO postgres;
 
 --
--- Name: usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: libreria; Owner: dresan
+-- Name: usuarios_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE libreria.usuarios_id_seq OWNED BY libreria.users.id;
+ALTER SEQUENCE public.usuarios_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: articles; Type: TABLE; Schema: public; Owner: dresan
+-- Name: articles; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.articles (
@@ -295,10 +293,10 @@ CREATE TABLE public.articles (
 );
 
 
-ALTER TABLE public.articles OWNER TO dresan;
+ALTER TABLE public.articles OWNER TO postgres;
 
 --
--- Name: articles_id_seq; Type: SEQUENCE; Schema: public; Owner: dresan
+-- Name: articles_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.articles_id_seq
@@ -310,17 +308,17 @@ CREATE SEQUENCE public.articles_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.articles_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.articles_id_seq OWNER TO postgres;
 
 --
--- Name: articles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dresan
+-- Name: articles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.articles_id_seq OWNED BY public.articles.id;
 
 
 --
--- Name: movements; Type: TABLE; Schema: public; Owner: dresan
+-- Name: movements; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.movements (
@@ -339,10 +337,10 @@ CREATE TABLE public.movements (
 );
 
 
-ALTER TABLE public.movements OWNER TO dresan;
+ALTER TABLE public.movements OWNER TO postgres;
 
 --
--- Name: movements_id_seq; Type: SEQUENCE; Schema: public; Owner: dresan
+-- Name: movements_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.movements_id_seq
@@ -354,17 +352,17 @@ CREATE SEQUENCE public.movements_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.movements_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.movements_id_seq OWNER TO postgres;
 
 --
--- Name: movements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dresan
+-- Name: movements_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.movements_id_seq OWNED BY public.movements.id;
 
 
 --
--- Name: providers; Type: TABLE; Schema: public; Owner: dresan
+-- Name: providers; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.providers (
@@ -380,10 +378,10 @@ CREATE TABLE public.providers (
 );
 
 
-ALTER TABLE public.providers OWNER TO dresan;
+ALTER TABLE public.providers OWNER TO postgres;
 
 --
--- Name: providers_id_seq; Type: SEQUENCE; Schema: public; Owner: dresan
+-- Name: providers_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.providers_id_seq
@@ -395,17 +393,17 @@ CREATE SEQUENCE public.providers_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.providers_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.providers_id_seq OWNER TO postgres;
 
 --
--- Name: providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dresan
+-- Name: providers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.providers_id_seq OWNED BY public.providers.id;
 
 
 --
--- Name: reservation; Type: TABLE; Schema: public; Owner: dresan
+-- Name: reservation; Type: TABLE; Schema: public; Owner: postgres
 --
 
 CREATE TABLE public.reservation (
@@ -418,10 +416,10 @@ CREATE TABLE public.reservation (
 );
 
 
-ALTER TABLE public.reservation OWNER TO dresan;
+ALTER TABLE public.reservation OWNER TO postgres;
 
 --
--- Name: reservation_id_seq; Type: SEQUENCE; Schema: public; Owner: dresan
+-- Name: reservation_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
 CREATE SEQUENCE public.reservation_id_seq
@@ -433,99 +431,99 @@ CREATE SEQUENCE public.reservation_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.reservation_id_seq OWNER TO dresan;
+ALTER SEQUENCE public.reservation_id_seq OWNER TO postgres;
 
 --
--- Name: reservation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: dresan
+-- Name: reservation_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
 ALTER SEQUENCE public.reservation_id_seq OWNED BY public.reservation.id;
 
 
 --
--- Name: beneficiaries id; Type: DEFAULT; Schema: libreria; Owner: dresan
+-- Name: beneficiaries id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.beneficiaries ALTER COLUMN id SET DEFAULT nextval('libreria.beneficiarios_id_seq'::regclass);
-
-
---
--- Name: books id; Type: DEFAULT; Schema: libreria; Owner: dresan
---
-
-ALTER TABLE ONLY libreria.books ALTER COLUMN id SET DEFAULT nextval('libreria.libros_id_seq'::regclass);
+ALTER TABLE ONLY public.beneficiaries ALTER COLUMN id SET DEFAULT nextval('public.beneficiarios_id_seq'::regclass);
 
 
 --
--- Name: clasifications id; Type: DEFAULT; Schema: libreria; Owner: dresan
+-- Name: books id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.clasifications ALTER COLUMN id SET DEFAULT nextval('libreria.clasificaciones_id_seq'::regclass);
-
-
---
--- Name: clients id; Type: DEFAULT; Schema: libreria; Owner: dresan
---
-
-ALTER TABLE ONLY libreria.clients ALTER COLUMN id SET DEFAULT nextval('libreria.clientes_id_seq'::regclass);
+ALTER TABLE ONLY public.books ALTER COLUMN id SET DEFAULT nextval('public.libros_id_seq'::regclass);
 
 
 --
--- Name: loan id; Type: DEFAULT; Schema: libreria; Owner: dresan
+-- Name: clasifications id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.loan ALTER COLUMN id SET DEFAULT nextval('libreria.prestamos_id_seq'::regclass);
-
-
---
--- Name: users id; Type: DEFAULT; Schema: libreria; Owner: dresan
---
-
-ALTER TABLE ONLY libreria.users ALTER COLUMN id SET DEFAULT nextval('libreria.usuarios_id_seq'::regclass);
+ALTER TABLE ONLY public.clasifications ALTER COLUMN id SET DEFAULT nextval('public.clasificaciones_id_seq'::regclass);
 
 
 --
--- Name: articles id; Type: DEFAULT; Schema: public; Owner: dresan
+-- Name: clients id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.clients ALTER COLUMN id SET DEFAULT nextval('public.clientes_id_seq'::regclass);
+
+
+--
+-- Name: loan id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.loan ALTER COLUMN id SET DEFAULT nextval('public.prestamos_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.usuarios_id_seq'::regclass);
+
+
+--
+-- Name: articles id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.articles ALTER COLUMN id SET DEFAULT nextval('public.articles_id_seq'::regclass);
 
 
 --
--- Name: movements id; Type: DEFAULT; Schema: public; Owner: dresan
+-- Name: movements id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.movements ALTER COLUMN id SET DEFAULT nextval('public.movements_id_seq'::regclass);
 
 
 --
--- Name: providers id; Type: DEFAULT; Schema: public; Owner: dresan
+-- Name: providers id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.providers ALTER COLUMN id SET DEFAULT nextval('public.providers_id_seq'::regclass);
 
 
 --
--- Name: reservation id; Type: DEFAULT; Schema: public; Owner: dresan
+-- Name: reservation id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.reservation ALTER COLUMN id SET DEFAULT nextval('public.reservation_id_seq'::regclass);
 
 
 --
--- Data for Name: beneficiaries; Type: TABLE DATA; Schema: libreria; Owner: dresan
+-- Data for Name: beneficiaries; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY libreria.beneficiaries (id, rsocial, contact, address, number, program, material, registered) FROM stdin;
+COPY public.beneficiaries (id, rsocial, contact, address, number, program, material, registered) FROM stdin;
 2	casacem	dresan	chapu1	2230003202	dresan	Otros	2024-12-16
 \.
 
 
 --
--- Data for Name: books; Type: TABLE DATA; Schema: libreria; Owner: dresan
+-- Data for Name: books; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, clasification, location, amount, price, queue) FROM stdin;
+COPY public.books (id, isbn, title, author, editorial, edition, conditions, clasification, location, amount, price, queue) FROM stdin;
 2	11111	CD	---	---	---	---	---	---	479	10	\N
 3	22222	DVD	---	---	---	---	---	---	882	15	\N
 5	44444	Revista	---	---	---	---	---	---	95	5	\N
@@ -1592,7 +1590,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 1110	9683303420	Tesoros del saber 	walt disney 	grolier	19	poco maltratado	Infantiles 	PrimerEstante	0	15	\N
 1111	0439044057	Who can you trust	lauren  Day	scholastic	1	Buenas	Infantiles 	PrimerEstante	1	25	\N
 1112	0140810889	Find a story 2	Maureen Vidler	penguin readers 	1	usado 	Infantiles 	PrimerEstante	1	15	\N
-1113	0965670112	Every guy's guide as to what to expect when she's expecting	William Grant Eppler	Furlip Publishing	Segunda Edicion	Usado	Temas Varios en Ingl	PrimerEstante	1	10	\N
+1113	0965670112	Every guys guide as to what to expect when she s expecting	William Grant Eppler	Furlip Publishing	Segunda Edicion	Usado	Temas Varios en Ingl	PrimerEstante	1	10	\N
 1114	9586005844	Introducción a las matemáticas universitarias	María Emilia  Eslava E.	mc graw hill	1	usado	Matemáticas	PrimerEstante	1	70	\N
 1115	9686054669	Matemáticas mercantiles	Miguel A. Miranda	patria s.a.	1	Poco maltratado	Matemáticas	Repisa 8	1	30	\N
 1116	9706861602	Matemáticas financieras	Hector vidaurri	thomson	2	usado	Matemáticas	PrimerEstante	0	30	\N
@@ -2365,7 +2363,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 1929	0669381608	Working it out	Donna Alvermann	DC Heath	1	buenas 	Temas Varios en Ingl	Primer estante  	0	30	\N
 1930	067168468X	Where is it ?	Simon and Schuster 	Kingfisher	1	buenas 	Temas Varios en Ingl	Primer estante  	1	15	\N
 1931	0590405837	A visit to Washington DC	Jill Krementz	Scholastic 	1	usado 	Novelas en inglés	Primer estante  	1	15	\N
-1933	0439800765	Valentine's day from the Black Lagoon	Mike Thaler	Scholastic	1	Maltratado	Infantiles 	Primer estante  	1	5	\N
+1933	0439800765	Valentines day from the Black Lagoon	Mike Thaler	Scholastic	1	Maltratado	Infantiles 	Primer estante  	1	5	\N
 1934	9684341571	El proceso	Franz Kafka	Premia editora s.a.	4	Buenas condiciones	Novelas	Primer estante  	0	30	\N
 1935	848969141	Los miserables	Victor Hugo	Editorial Andres Bello	4	Excelente	Novelas	Primer estante  	1	85	\N
 1936	9681500296	Azul...	Rubén Darío	Editores Mexicanos Unidos S.A.	1	Buenas condiciones	Poesía	Primer estante  	1	45	\N
@@ -2613,7 +2611,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2189	970666565x	1984	George Orwell	TM	4	Usado	Novelas	Primer estante  	0	35	\N
 2190	0385494084	The one to one manager	Don Peppers/ Martha Rogers	Currency doubleday	1	Poco maltratado	Temas Varios en Ingl	Primer estante  	0	40	\N
 2191	9789708104579	El testamento maya	Steve Alten 	Grijalbo	r1 novedades	buenas	Novelas	Repisa 3	0	85	\N
-2192	9788498721874	Los grupos sanguíneos y la alimentación	Peter J. D'adamo/ Catherine Whitney	Zeta	1	Buenas	Salud	Primer estante  	1	70	\N
+2192	9788498721874	Los grupos sanguíneos y la alimentación	Peter J. D adamo/ Catherine Whitney	Zeta	1	Buenas	Salud	Primer estante  	1	70	\N
 2193	9786075160405	Dos estudios a partir de la descomposición de Marcus Rothkowitz	Luis Eduardo García	Tierra Adentro	1	Excelente	Estudios y ensayos	Repisa 2	0	35	\N
 2194	9786074213072	Sueño con mujeres que ni fu ni fa	Samuel Beckett	Tusquets	1	Usado	Novelas	Primer estante  	0	60	\N
 2195	978970245x	Padre rico, padre pobre	Robert T. Kiyosaki	TM	3	Buenas	Superación personal	Primer estante  	0	80	\N
@@ -2722,7 +2720,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2304	8476343213	Historia del pueblo de Israel 2	Ernest Renan	Iberia	1	Usado	Historia	Primer estante  	0	20	\N
 2305	8470399861	Artículos Varios (II)	Mariano José de Larra	RODESA	1	Buenas 	Novelas	Primer estante  	1	20	\N
 2306	9788466309400	El porvenir de mi pasado	Mario benedetti	Punto de Lectura	5	Buenas	Novelas	Primer estante  	0	60	\N
-2307	2290045659	La saison du coeur 2	Leah Laiman	J'ai lu	1	Buenas	Otros idiomas	Repisa 5	1	20	\N
+2307	2290045659	La saison du coeur 2	Leah Laiman	Jai lu	1	Buenas	Otros idiomas	Repisa 5	1	20	\N
 2308	9789686769005	Demian	Hermann Hesse	Época	1	Usado	Novelas	Primer estante  	0	30	\N
 2309	8402061451	Ecue Yamba O 	Alejo Carpentier	Bruguera	3	Usado	Novelas	Primer estante  	0	25	\N
 2310	9509858366	Sistema musculoesquelético	-	Celestone	1	Poco maltratado1	Medicina	Primer estante  	0	20	\N
@@ -2770,7 +2768,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2355	9783462039702	Der Geschmack von Apfelkernen	Katharina Hagena	Kiepenheuer & Witsch	1	Buenas condiciones	Novelas	Primer estante  	0	70	\N
 2356	9702211700	Alemán fácil esencial 	Wolfram Klatt	Larousse	2	Excelente	Educación  	Primer estante	1	40	\N
 2357	8831790145	Musei 	Pietro C. Marani Rosanna Pavoni	Marsilio 	1	Usado	Otros idiomas	Primer estante  	0	30	\N
-2358	76137	L'agneau mystique	Alfons Dierick 	Daphne Gand	1	Usado	Otros idiomas	Repisa 5	0	15	\N
+2358	76137	L agneau mystique	Alfons Dierick 	Daphne Gand	1	Usado	Otros idiomas	Repisa 5	0	15	\N
 2359	17882	Introducción a la lógica	Raúl Gutiérrez Saenz	Esfinge	19	Buenas condiciones	Filosofía	Primer estante  	1	60	\N
 2360	90735	Mariage	A. Sterckx O. P. 	Études religieuses	1	Maltratado	Otros idiomas	Primer estante  	0	10	\N
 2361	9173245011	Pornografi och revolution 	Robert Darnton	ordfront	1	Buenas	Otros idiomas	Primer estante  	0	30	\N
@@ -2852,7 +2850,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2438	9781594484650	Both ways is the only way I want it	Maile Meloy	Riverhead books	1	Buenas condiciones	Novelas en inglés	Primer estante  	2	50	\N
 2439	9781409136293	The impossible dead	Ian Rankin	Orion Books	1	Excelente	Novelas en inglés	Primer estante  	0	10	\N
 2440	9780316099271	Exit music	Ian Rankin	Ba	Back Bay Books	Buenas condiciones	Novelas en inglés	Primer estante  	1	50	\N
-2441	0812029755	Goldfish	Marshall Ostrow	Barron's	1	Buenas condiciones	Animales y naturalez	Primer estante  	1	30	\N
+2441	0812029755	Goldfish	Marshall Ostrow	Barron s	1	Buenas condiciones	Animales y naturalez	Primer estante  	1	30	\N
 2442	9871554680498	After River	Donna Milner	Harper Perennial	1	Buenas condiciones	Novelas en inglés	Primer estante  	0	40	\N
 2443	0307290956	The portrait of a lady	Henry James	Premier Classics	1	Usado	Novelas en inglés	Primer estante  	1	65	\N
 2444	9780307477408	The troubled man	Henning Mankell	Vintage Crime	1	Buenas condiciones	Novelas en inglés	Primer estante  	0	50	\N
@@ -2871,7 +2869,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2457	9681330331	No siembro para mí	Miguel Alemán Velasco 	Diana	1	Buenas condiciones	Biografías	Estante 3	1	40	\N
 2458	9789705400322	Importancia del Estudio de las Lenguas Indígenas de México	Francisco Belmar	CONACULTA	1	Usado	Estudios regionales	Primer estante  	1	35	\N
 2459	843760071	El caballero encantado	Benito Pérez Galdós 	REI México	Primera	Buenas condiciones	Novelas	Primer estante  	1	50	\N
-2460	451205	Ciencia ficción Espacio N. 5	Kevin O'Donnell Jr./ Joseph Flower/ Robe	Mosaico S.A. 	1	Usado	Novelas	Primer estante  	0	10	\N
+2460	451205	Ciencia ficción Espacio N. 5	Kevin O Donnell Jr./ Joseph Flower/ Robe	Mosaico S.A. 	1	Usado	Novelas	Primer estante  	0	10	\N
 2461	990771	Historias fantásticas Duende N. 4 	Erckmann-Chatrian/Mark G. Ross/ William 	Mosaico S.A. 	1	Usado	Novelas	Primer estante  	0	10	\N
 2462	558157	Lo más audaz de Casanova	Sin autor	Posada S.A. 	1	Usado 	Temas Varios	Repisa 2	1	40	\N
 2463	9707310456	Copyright	Jorge Maronna/ Luis María Pescetti	Punto de lectura	1	Buenas condiciones	Novelas	Primer estante  	0	50	\N
@@ -2908,7 +2906,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2496	9771665134010	Luvina	Varios	Editorial Pandora	51	Buenas condiciones	Literatura	Repisa 4	4	30	\N
 2499	897442	La etiología de la enfermedad y de la salud mental y emocional	-	Neuróticos anónimos A.C.	1	Buenas	Psicología	Estante 9	2	35	\N
 2500	9786079092023	La Quemada	Peter Jiménez Betts	Instituto Zacatecano de Cultura Ramón López Velarde	1	Excelente	Arqueología	Primer estante  	1	35	\N
-2501	864154	An american doctor's odyssey	Victor Heiser	Grosset's universal library	1	Usado	Novelas en inglés	Primer estante  	1	30	\N
+2501	864154	An american doctor s odyssey	Victor Heiser	Grosset s universal library	1	Usado	Novelas en inglés	Primer estante  	1	30	\N
 2502	432254	México: riqueza y miseria 	Alonso Aguilar M. y Fernando Carmona	Editorial Nuestro Tiempo	2	Usado	Sociales	Primer estante  	1	30	\N
 2503	703698	Este es ¡El verdadero Michael!	Pilar Obón y Jorge Sola	Best Seller Edivision	1	Buenas condiciones	Biografías	Primer estante  	0	30	\N
 2505	9786074298567	Así es Robert Pattinson	Mel Williams	Montena	2	Buenas condiciones	Biografías	Bodega	1	15	\N
@@ -2976,7 +2974,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2569	9879581695	Para una gran mujer	Lidia María Riba	Vergara J. Riba	4	Buenas condiciones	Superación personal	Primer estante  	1	15	\N
 2570	968856463X	sexualidad y reproducción humana en México	Teresa Lartigue, Héctor Ávila	P y V editores	1	Buenas condiciones	Sexualidad	Primer estante  	1	40	\N
 2571	9781250054050	What I Know For Sure	Oprah Winfrey	Flatiron Books	1	Buenas condiciones	Superación personal	Estante 6	1	100	\N
-2572	968280244x	El hombre que le susurraba a los caballos, al despuntar el alba, descenso en lla	Varios	Reader's Digest	1	Buenas condiciones	Novelas	Primer estante  	0	50	\N
+2572	968280244x	El hombre que le susurraba a los caballos, al despuntar el alba, descenso en lla	Varios	Reader s Digest	1	Buenas condiciones	Novelas	Primer estante  	0	50	\N
 2574	8408050486	Tailandia	GeoPlaneta	Lonely Planet	1	Buenas condiciones	Viajes	Primer estante  	1	50	\N
 2575	9788493914332	La era Obama	Noam Chomsky	Pasado & Presente	1	Excelente	Filosofía	Primer estante  	0	60	\N
 2576	978607140189	Las novias del diablo	Minerva Rodríguez	EmMU	1	Buenas condiciones	Temas Varios	Primer estante  	1	20	\N
@@ -2993,7 +2991,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2587	9786074003703	Martes con mi viejo profesor 	Mitch Alborn 	Oceano exprés 	10	Buenas condiciones	Novelas	Primer estante  	0	110	\N
 2588	9706332138	Serpientes y escaleras	Eduardo Garza Cuéllar 	Ediciones Coyoacán 	r2	Buenas condiciones	Superación personal	Repisa 1	1	50	\N
 2589	9702400740	La ventaja del conocimiento	Rudy Ruggies / Dan Holtshouse	CECSA	1	Buenas condiciones	Economía	Repisa 7	1	70	\N
-2591	0425179613	It's not about the bike 	Lance Armstrong	Berkley 	1	Poco maltratados 	Temas Varios	Primer estante  	1	60	\N
+2591	0425179613	It s not about the bike 	Lance Armstrong	Berkley 	1	Poco maltratados 	Temas Varios	Primer estante  	1	60	\N
 2592	9707700432	Comunicate, Cautiva y Convence	Gaby Vargas 	Aguilar 	1	Buenas condiciones	Superación personal	Primer estante  	1	90	\N
 2593	9786074801798	El lado de B de la distracción 	Damon Young	Ediciones B	1	Buenas condiciones	Superación personal	Primer estante  	1	70	\N
 2594	9688952125	Perspectivas de la investigación en educación	Lorenza Villa Lever	Universidad de Guadalajara	1	usado	Educación  	Repisa 16	0	25	\N
@@ -3062,9 +3060,9 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2658	9684999178	Escuela para padres y maestros	Luis Gadea de Nicolás	icedi	1	Usado	Educación  	Repisa 5	1	40	\N
 2659	9683685196	Evaluación académica 	Teresa Pacheco / Ángel Díaz	fondo de cultura economica	1	Buenas	Pedagogía	Repisa 18	1	5	\N
 2660	9702708486	Estrategias para fomentar una cultura de calidad en instituciones de educación s	José Sánchez Gutiérrez	universidad de guadalajara	R 1	Usado	Educación  	Repisa 11	1	40	\N
-2661	35845	Cathedral Basic Readers Book Six	The Rev. John A. O'Brien	scott, foresman and company	1	Usado	Temas Varios en Ingl	Primer estante  	0	25	\N
+2661	35845	Cathedral Basic Readers Book Six	The Rev. John A. O Brien	scott, foresman and company	1	Usado	Temas Varios en Ingl	Primer estante  	0	25	\N
 2662	9781591391104	The first 90 days	Michael Watkins	hardvard business school press	1	Buenas	Temas Varios en Ingl	Primer estante 	1	50	\N
-2663	0812046056	Dalmatians: a complete pet owner's manual	Varios	barron's	1	Buenas	Temas Varios en Ingl	Repisa 6	1	50	\N
+2663	0812046056	Dalmatians: a complete pet owner s manual	Varios	barron s	1	Buenas	Temas Varios en Ingl	Repisa 6	1	50	\N
 2664	719985	Mozart memorials in salzburg	Varios	international edition 	1	Usado	Temas Varios en Ingl	Primer estante 	0	20	\N
 2665	544836	CIMARRON	Edna Ferber	grosset & dunlap	1	Usado	Temas Varios en Ingl	Primer estante 	1	30	\N
 2666	883847	The swiss family 	Steve Frazee	whitman publishing company	1	Usado	Temas Varios en Ingl	Primer estante 	1	35	\N
@@ -3077,7 +3075,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2673	0684871904	Venice: The lion city	Garry Wills	simon & schuster	1	Usado	Temas Varios en Ingl	Primer estante 	1	65	\N
 2674	9679998908	1837	Bruce Gale	MICCI	1	Buenas	Temas Varios en Ingl	Primer estante  	1	100	\N
 2675	0972952926	The little earth book	James Bruges	disinformation	1	Buenas	Temas Varios en Ingl	Primer estante 	0	20	\N
-2676	182177	Nellie's cartoons to get well by	Larry katsman	dell	1	Maltratado	Temas Varios en Ingl	Primer estante 	1	15	\N
+2676	182177	Nellie s cartoons to get well by	Larry katsman	dell	1	Maltratado	Temas Varios en Ingl	Primer estante 	1	15	\N
 2677	0449244458	MANCHU	Robert Elegant	fawcett crest	1	poco maltratado	Novelas en inglés	Primer estante 	0	15	\N
 2678	616329	A Book of Fortitude	Varios	ginn and company	1	Usado	Temas Varios en Ingl	Primer estante 	1	70	\N
 2679	595593	The Mind in the Making	James Harvey Robinson	harper & brothers 	1	Usado	Temas Varios en Ingl	Primer estante 	1	30	\N
@@ -3188,7 +3186,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2787	9688253553	Confesiones de una sombra	Humberto Guzmán	Biblioteca del ISSSTE	1	Buenas	Novelas	Primer estante  	1	20	\N
 2788	0465007856	Bureaucracy	James Q. Wilson	Harper Collins Publishers	1	Buenas	Temas Varios en Ingl	Primer estante  	1	35	\N
 2789	9789685368391	Estimulación muy temprana para tus niños	Mariela Salgado	Leo	1	usado	Familia	Repisa 6	1	20	\N
-2790	9780761121329	What to expect when you're expecting	varios	workman	1	usado	Temas Varios en Ingl	Primer estante 	1	180	\N
+2790	9780761121329	What to expect when you re expecting	varios	workman	1	usado	Temas Varios en Ingl	Primer estante 	1	180	\N
 2792	9788471123411	La investigación-acción en eduación	J. Elliot	morata	3	poco maltratado	Educación  	Primer estante 	0	40	\N
 2793	9789706571380	Para llegar a tu alcoba	Laura Ortiz	ágata	1	buenas	Poesía	Primer estante 	0	15	\N
 2794	9788472453586	Yoga, embarazo y nacimiento	Janet Balaskas	kairos	r4	poco maltratado	New age	Repisa 1	0	90	\N
@@ -3245,7 +3243,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2848	9786071106254	El profesor	John Katzenbach	Suma	1	Buenas	Novelas	Primer estante  	0	120	\N
 2849	9684361238	Cálculo diferencial e integral	Agustin Anfossi	progreso	1	maltratado	Matemáticas	Repisa 8	1	60	\N
 2850	9789684229846	Álgebra lineal con aplicaciones	Stanley I. Grossman	McGraw Hill	4	Usado	Álgebra, Aritmética 	Primer estante 	0	50	\N
-2851	9781576839942	If you can't lose it, decorate it 	Anita Ranfroe	Navpress	1	Usado	Temas Varios en Ingl	Primer estante  	0	10	\N
+2851	9781576839942	If you can t lose it, decorate it 	Anita Ranfroe	Navpress	1	Usado	Temas Varios en Ingl	Primer estante  	0	10	\N
 2852	8489778353	Un año en la vida de una mujer	Maité Jacquet	Medici	1	Buenas	Familia	Primer estante  	1	95	\N
 2853	9687270454	Ecuaciones diferenciales con aplicaciones	Dennis G. Zill	iberoamérica	2	poco maltratado	Matemáticas	Primer estante 	0	90	\N
 2854	9786071705518	La crisis de la edad madura	Angy Newman	Trillas	1	Buenas condiciones	Familia	Repisa 6	1	60	\N
@@ -3274,7 +3272,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2878	338568	Historia del hombre La independencia americana I	Miguel Alemán Velasco 	Fundación Cultural Televisa A.C. 	1	Usado	Historia	Repisa 11	0	20	\N
 2879	346176	Historia del hombre América II	Miguel Alemán Velasco 	Fundación Cultural Televisa A.C. 	1	Usado	Historia	Repisa 11	0	20	\N
 2880	939547	Historia del hombre América III	Miguel Alemán Velasco 	Fundación Cultural Televisa A.C. 	1	Usado	Historia	Repisa 11	0	20	\N
-2881	968280194x	Aguas peligrosas, Si ama la música y le gusta bailar, la princesa del Nilo y un 	Varios Autores	Reader's Digest	1	Buenas	Novelas	Primer estante  	0	60	\N
+2881	968280194x	Aguas peligrosas, Si ama la música y le gusta bailar, la princesa del Nilo y un 	Varios Autores	Reader s Digest	1	Buenas	Novelas	Primer estante  	0	60	\N
 2882	514733	Narraciones 	Anton P. Chejov	salvat	1	Usado	Novelas	Primer estante  	0	20	\N
 2883	0590068857	Mi rincón en la montaña	Jean Craighead George	Scholastic	1	Usado	Novelas	Primer estante  	1	35	\N
 2884	9681602072	El llano en llamas	Juan Rulfo	Fondo de Cultura Económico	2	Maltratado	Novelas	Primer estante  	0	15	\N
@@ -3294,7 +3292,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2901	9684561881	El tío Goriot	Honoré de Balzac	Rei México	1	Buenas condiciones	Novelas	Repisa 2	0	30	\N
 2902	9781600940088	Itsy Bitsy Yoga	Helen Garabedian 	Lifelong Books	1	Excelente	Salud	Primer estante  	1	50	\N
 2903	9786075270241	Inéditos y extraviados	Ignacio Padilla	Océano	1	Excelente	Novelas	Primer estante  	1	65	\N
-2904	563293	Sin salida, Las llamadas de la muerte, Contra reloj, Sam un perro al rescate	Varios Autores	Reader's Digest	1	usado	Novelas	Primer estante  	0	20	\N
+2904	563293	Sin salida, Las llamadas de la muerte, Contra reloj, Sam un perro al rescate	Varios Autores	Readers  Digest	1	usado	Novelas	Primer estante  	0	20	\N
 2905	876815	La busca 	Pio Baroja	Salvat	1	Usado	Novelas	Primer estante  	0	20	\N
 2906	752435371148	Cocina navideña	-	Armonía 	1	Usado	Cocina	Primer estante  	1	10	\N
 2907	9681915135	Libros todo lo que hay que leer 	Christiane Zschirnt 	Taurus 	1	Usado	Estudios y ensayos	Primer estante  	0	70	\N
@@ -3384,11 +3382,11 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 2994	9706273324	primeros auxilios	-	remedios naturales	1	usado	Salud	Primer estante 	1	10	\N
 2995	156195	La dieta baja en carbohidratos	Evelyn F. Fiore	The Ridge Press	1	Maltratado	Salud	Primer estante  	1	5	\N
 2996	9789706274779	yoga para embarazadas	-	época	1	buenas	Salud	Primer estante 	0	15	\N
-2997	707901	Yoga: 20 minute workout	Sin autor	Reader's Digest	1	Buenas	Salud	Primer estante  	1	5	\N
+2997	707901	Yoga: 20 minute workout	Sin autor	Readers Digest	1	Buenas	Salud	Primer estante  	1	5	\N
 2998	027342321419	Cómo combatir gripes y resfríos	varios	medexpress	1	usado	Salud	Primer estante 	2	15	\N
 2999	847317	Los Secretos de la Eterna Juventud	Dr. L. Krutoff	El Mueble	1	Buenas	Salud	Primer estante  	0	20	\N
 3000	9681300653	Técnicas de buceo deportivo	Baltasar Pazos	diana	1	usado	Deportes	Repisa 10	1	30	\N
-3001	968280132x	La mejor forma de estar en forma	varios	reader's digest	1	poco maltratado	Salud	Primer estante 	0	50	\N
+3001	968280132x	La mejor forma de estar en forma	varios	reader s digest	1	poco maltratado	Salud	Primer estante 	0	50	\N
 3002	9706570772	Seis	Varios	occidente	1	en buen estado	Poesía	Primer estante 	0	30	\N
 3004	97196094	Pasos de Agua	Rolando Muñoz Felix	Imac	1ra	 buen estado	Poesía	Primer estante 	0	40	\N
 3005	9789705802294	Sabina	Varios	Aguilar	1ra	 buen estado	Artes	Primer estante  	0	40	\N
@@ -3559,7 +3557,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3180	9786070212772	Pensar el sonido	Larson Guerra	unam	1	 buen estado	Cine	Primer estante 	0	80	\N
 3182	9788497777568	El poder de las cosas pequeñas	Linda Kaplan Thaler	belisco	1	 buen estado	Superación personal	Primer estante 	0	70	\N
 3183	9789701023983	Secretos de la radiología	Varios	MacGraw-Hill	1	Usado	Medicina	Primer estante 	0	35	\N
-3184	9682800897	Un mago en casa	Varios	Reader's digest	1	usado	Temas Varios	Primer estante 	0	50	\N
+3184	9682800897	Un mago en casa	Varios	Reader s digest	1	usado	Temas Varios	Primer estante 	0	50	\N
 3185	0443022372	El desarrollo de su niño en los primeros cinco años	Ronald S. Illingworth	CECSA	1	usado	Familia	Primer estante 	1	10	\N
 3186	9781571451170	The works science	Varios	thunder bay press	1	en buen estado	Infantiles 	Primer estante 	0	80	\N
 3187	96816370548402	TOEFL preparation course	M. Kathleen Mahnke & Carolyn B. Duffy	MacMillan	28	buenas	Aprendizaje de inglé	Primer estante 	1	80	\N
@@ -3618,7 +3616,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3243	273803	Reloj de Sol	Gabriel Zaid	Issste	1	 buen estado	Poesía	Primer estante 	0	30	\N
 3244	840202937	Las mejores Poesías de Amor Sudamericanas	Recopilación Jorge Montagut	Bruguera	1ra	usado de años	Poesía	Primer estante 	0	20	\N
 3245	8470399780	La comedia nueva /El sí de las niñas 	Leandro Fernándes de Moratín	Clásica Castalia	1ra	 buen estado	Teatro	Primer estante 	0	30	\N
-3246	9682800374	Genios y Figuras	Varios 	Reader's Digest	5	buen estado	Biografías	Primer estante 	1	120	\N
+3246	9682800374	Genios y Figuras	Varios 	Reader s Digest	5	buen estado	Biografías	Primer estante 	1	120	\N
 3247	261032	Flor de Poesía en Guadalajara 	Varios	Ayuntamiento de Guadalajara	1ra	 buen estado	Poesía	Primer estante 	0	60	\N
 3248	9789707022249	Algunas travesías y perspectivas de la investigación educativa en jóvenes y adul	Varios	UDG	1ra	buen estado	Educación  	Primer estante 	1	60	\N
 3249	9788474329315	Cómo hacer tu primer trabajo de investigación 	Judith Bell	Gedisa	1ra	 buen estado	Estudios y ensayos	Repisa 5	1	200	\N
@@ -3755,8 +3753,8 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3392	9580404135	Los hombres de la prehistoria	Daniel Hénon	Norma	Primera 	usado	Infantiles 	Primer estante 	0	25	\N
 3393	9580402701	Los animales salvajes	Charles Henry Vermont	Norma	Primera 	 buen estado	Infantiles 	Primer estante 	0	25	\N
 3394	9580404127	La Tierra y el Cielo	Pierre Avérous	Norma	Primera 	usado	Infantiles 	Primer estante 	0	25	\N
-3395	9682800722	Hechos y pormenores	Varios	Reader's digest	Primera 	usado	Ciencia	Primer estante 	0	45	\N
-3396	9682801001	El gran libro de lo asombroso e inaudito	Varios	Reader's digest	Primera 	usado	Ciencia	Primer estante  	0	90	\N
+3395	9682800722	Hechos y pormenores	Varios	Readers digest	Primera 	usado	Ciencia	Primer estante 	0	45	\N
+3396	9682801001	El gran libro de lo asombroso e inaudito	Varios	Readers digest	Primera 	usado	Ciencia	Primer estante  	0	90	\N
 3397	563815	Autoanuario	-	Rovelo editores	1	Usado 	Temas Varios	Primer estante  	1	80	\N
 3398	9706243178	I Encuentro de investigación del patrimonio cultural	Varios	Paraíso perdido	Primera 	 buen estado	Artes	Primer estante 	1	30	\N
 3399	9682601312	Materiales para Ingeniería 	Van Vlack	CECSA	segunda	usado	Ingeniería	Primer estante 	0	30	\N
@@ -3801,7 +3799,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3441	9786077340607	La educación para la salud	varios	Gobierno del Estado de Jalisco	1	usado	Salud	Primer estante 	1	20	\N
 3442	122329	Padecimientos Gastroduodenales 	Dr. Mario Arturo Ballesteros Amozurrutia	Garaitia	1	usado	Medicina	Primer estante 	0	20	\N
 3443	988107	Itetpoabopeli	-	-	1	poco maltratado	Otros idiomas	Repisa 4	1	25	\N
-3444	1884735967	Diagnosis and management of Alzheimer's Disease and other dementias	Robert C. Green	Professional communication	2	usado	Temas Varios en Ingl	Primer estante 	1	15	\N
+3444	1884735967	Diagnosis and management of Alzheimers Disease and other dementias	Robert C. Green	Professional communication	2	usado	Temas Varios en Ingl	Primer estante 	1	15	\N
 3445	9789706517661	El impresionismo	Ingo F. Walther	oceano	1	buenas	Artes	Primer estante 	0	700	\N
 3446	752435825160	Algarabía	varios	xv	1	usado	Temas Varios	Primer estante  	0	20	\N
 3447	752435825214	Algarabía niños	-	algarabía	1	buenas	Temas Varios	Primer estante 	7	10	\N
@@ -4011,7 +4009,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3669	9786075074825	Tonalá, tradición viva 	-	Ayuntamiento de Tonalá 	1 	buen estado 	Temas Varios	Primer estante 	0	110	\N
 3670	934027	Ecnomo Sicilia 256 A.C	Antonino Giuseppe Aprea	Agenzi Stampa	1	poco maltratado	Otros idiomas	Repisa 5	1	15	\N
 3671	9780060930653	Free the children 	Craig Kielburger 	Harper Perennial	1	usado	Temas Varios en Ingl	Primer estante 	0	20	\N
-3672	508773	Teoría y práctica del teatro 	Varios	Libreria castillo 	1	usado 	Artes	Primer estante 	0	25	\N
+3672	508773	Teoría y práctica del teatro 	Varios	public castillo 	1	usado 	Artes	Primer estante 	0	25	\N
 3673	9780679731146	A year in provence 	Peter Mayle 	Vintage Departures 	1	poco maltratado 	Novelas en inglés	Repisa 6	1	20	\N
 3674	873904	Matirologi oriental 1	José Rodriguez 	Gerardo Mayela	1	usado	Temas Varios	Primer estante 	1	15	\N
 3675	9789706270689	Decídase a triunfar 	-	Epoca	1	usado	New age	Primer estante 	0	10	\N
@@ -4095,7 +4093,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3757	9789707806610	La vuelta al mundo en 80 días 	Julio Verne	Grijalbo	1	buen estado	Novelas	Primer estante 	0	40	\N
 3758	9687398280	De ser , de amar y otros ateísmos	Sergio Wybo	Lítteris	1	buen estado	Superación personal	Primer estante 	0	50	\N
 3759	9780194226929	From the cradle to the grave	Clare West	Oxford	4	buenas	Novelas en inglés	Primer estante 	0	50	\N
-3760	019234012956	So you're going to be a dad	Peter Downey	lifelong	1	usado	Otros idiomas	Primer estante 	1	30	\N
+3760	019234012956	So youre going to be a dad	Peter Downey	lifelong	1	usado	Otros idiomas	Primer estante 	1	30	\N
 3761	814625016540	Dinoville Formas	Ann Ketly	Vision st	2	usado	Infantiles 	Primer estante 	0	15	\N
 3762	9788486344160	La antidieta	Harvey y Marilyn Diamond	Urano	1	buenas	Salud	Repisa 10	0	60	\N
 3763	9789706867520	Derecho de los negocios	Juan Antonio Rangel Charles	Cengage Learning	4	usado	Derecho	Primer estante 	1	110	\N
@@ -4104,7 +4102,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3766	173526	Letras Latinas e Italianas	Enrique Moreno Garcia	Societá 	1	usado	Literatura	Repisa 4	4	60	\N
 3767	421130	Don Nico	José R. Ramírez	amate	1	buenas	Religión	Primer estante 	0	40	\N
 3768	9788484038795	El imperio romano	Lesley Adkins	Edimat	6	excelentes	Historia	Primer estante 	0	75	\N
-3769	9780316154529	The Hummingbird's  Daughter	Luis Alberto Urrea	Back Bay Books	2	usado	Novelas en inglés	Primer estante 	0	40	\N
+3769	9780316154529	The Hummingbirds  Daughter	Luis Alberto Urrea	Back Bay Books	2	usado	Novelas en inglés	Primer estante 	0	40	\N
 3770	964102	Dorado Destino de Amor	Patricia Matthews	Javier Vergara	2	usado	Novelas	Repisa 2	1	20	\N
 3771	731823	Antologia México en el siglo xx 	Alvaro Matute	UNAM	2	usado	Literatura	Primer estante 	0	45	\N
 3772	567440	Altazor	Vicente Huidobro	Premia	1	viejo	Poesía	Primer estante 	0	30	\N
@@ -4197,7 +4195,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3863	660879	Se prohibe aburrirse 	Raul R. Bravo C.	Plenitud	1 	usado 	Temas Varios	Primer estante 	0	15	\N
 3864	776290	Los pueblos 	Azorín	Losada 	1	maltratado 	Novelas	Primer estante 	1	10	\N
 3865	664559	Familias a todo dar 	Rafael Gómez Pérez 	buena prensa 	1	maltratado 	Temas Varios	Primer estante 	0	10	\N
-3866	071831005991	A voyage from Ireland in 1849	Fiona McGiray's 	Bercley jam books 	Estante 2	usado 	Novelas en inglés	Repisa 2	1	25	\N
+3866	071831005991	A voyage from Ireland in 1849	Fiona McGiray s 	Bercley jam books 	Estante 2	usado 	Novelas en inglés	Repisa 2	1	25	\N
 3867	931335	Japón antiguo	Jonathan Norton Leonard	Time- life	1	usado 	Historia	Primer estante 	1	120	\N
 3869	726220	La china antigua	Edaward H. Schafer	timelife	1	usado 	Historia	Repisa 7	2	130	\N
 3870	9780789910813	El campo de batalla de la mente 	Joye Meyer	Unelit	1	usado 	New age	Primer estante 	0	30	\N
@@ -4253,7 +4251,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3921	037145003955	The black company	Clen Cook 	A To Doherty associates book new york	1	usado 	Novelas en inglés	Primer estante 	1	25	\N
 3923	070999005997	Zombies of the gene pool	Sharyn McCrumb	Ballantine book new york	1	usado 	Novelas en inglés	Primer estante 	0	20	\N
 3924	9789706275011	Versos y rimas 	-	RTM 	1	maltratado	Poesía	Repisa 3	0	10	\N
-3925	076783004993	Brionne	Louis L'amour	Bantam Books	1	usado	Novelas en inglés	Primer estante 	1	20	\N
+3925	076783004993	Brionne	Louis L amour	Bantam Books	1	usado	Novelas en inglés	Primer estante 	1	20	\N
 3926	06537300250	Unwiting Accomplice	Tina Vasilos	Harlequin books	1	usado 	Novelas en inglés	Primer estante 	1	20	\N
 3927	752435422871	Cinema Metrópoli (los ángeles)	varios	Luvina 	62	buen estado 	Literatura	Repisa 4	0	30	\N
 3928	9788408057932	La sombra del viento	Carlos Ruiz Zafón	Planeta	1	buen estado 	Novelas	Primer estante 	0	90	\N
@@ -4279,7 +4277,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 3949	151580	La mente en las relaciones humanas	Dan Custer	CECSA	1	usado	New age	Primer estante 	0	30	\N
 3950	126998	Visiones de Italia	Mauricio Gómez Mayorga	Instituto italiano de cultura	1	usado	Novelas	Repisa 5	1	30	\N
 3951	520941	Juárez y su México	Rlaph Roeder	-	2	usado	Historia	Primer estante 	0	80	\N
-3952	9780767909037	The Cat Who'll Live Forever	Peter Gethers	Broadway	1	Buenas	Temas Varios en Ingl	Primer estante  	0	50	\N
+3952	9780767909037	The Cat Who ll Live Forever	Peter Gethers	Broadway	1	Buenas	Temas Varios en Ingl	Primer estante  	0	50	\N
 3953	9781878424112	The Seven Spiritual Laws of Success	Deepak Chopra	New World Library	1	Buenas 	Temas Varios en Ingl	Primer estante  	0	50	\N
 3954	9781859744369	Sushi	Kumfoo Wong	Sterling	R 5	buen estado	Cocina	Primer estante 	0	30	\N
 3955	9786074152487	Justin Bieber	Chas Newkey	Tomo	1	buen estado 	Biografías	Primer estante 	1	50	\N
@@ -4667,7 +4665,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 4371	9788498207576	Paul Gauguin	-	publico	1	usado	Artes	Primer estante  	1	50	\N
 4372	84370088774	Pierre- Auguste Renoir	-	Publico	1	muy maltratado	Artes	Primer estante  	1	30	\N
 4373	8495503352	Grandes mestros	varios	Descubrir al arte biblioteca	1	usada	Artes	Primer estante  	3	75	\N
-4374	8474891299	geografía e historia mundial (colección	varios	ediciones castell	1	usado	Historia	Primer estante 	11	90	\N
+4374	8474891299	geografía e historia mundial (colección)	varios	ediciones castell	1	usado	Historia	Primer estante 	11	90	\N
 4375	8474440955	Protagonistas de la civilización (colección)	varios	Debate / Itaca	1	usda	Historia	Primer estante 	19	90	\N
 4376	8434537214	Historia del arte (colección)	varios	Salvat editores	1	matratada	Artes	Repisa 4	5	90	\N
 4377	6063827	Gramatica estructural explicada	Profesor José Muñoz Añorve	Mucar	1	usado	Educación  	Primer estante 	0	30	\N
@@ -5263,7 +5261,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 4996	9789681901608	El Cine 	Varios	Visual Altea 	1	buen estado 	Cine	Estante 4	0	170	\N
 4997	9786071128669	Ever after high: el libro del destino 	Shannon Hale	Alfaguara 	1	Excelente	Infantiles 	Estante 13	1	65	\N
 4998	9781412747127	Toy Story 2	Lynn Roberts	Publications International, ltd	1	Buenas condiciones	Infantiles 	Estante 10	0	50	\N
-4999	9780714843377	 It's not how good you are, it¿s how good you want to be	Paul Arden	Phaidon	1	Buenas condiciones	Temas Varios en Ingl	Estante 6	0	50	\N
+4999	9780714843377	 It s not how good you are, it¿s how good you want to be	Paul Arden	Phaidon	1	Buenas condiciones	Temas Varios en Ingl	Estante 6	0	50	\N
 5000	9786073114790	El Gran Lord	Trudi Canavan	Debolsillo	1	Buen estado	Novelas	Estante 11	0	70	\N
 5002	9788444120720	Aprender del corazón	Daniel Gottlieb	Everest	1	Excelente	Superación personal	Estante 1	0	90	\N
 5003	9789688563489	Aprender a pensar leyendo bien	Yolanda Argudín y María Luna	P y V editores	1	Buenas	Temas Varios	Estante 3	0	50	\N
@@ -5309,7 +5307,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 5043	9789684532526	Navidad en las montañas	Ignacio Manuel Altamirano	anaya	1	usado	Novelas	Bodega	1	15	\N
 5044	9782831502151	Moscow and leningrad	-	Berlitz	1	usado	Viajes	Bodega	1	15	\N
 5045	9789706211279	Ciudad de Puebla	-	-	1	maltratada	Viajes	Bodega	1	10	\N
-5046	9781565076266	A child's first steps to virtues	emily Hunter	Haverts house	1	usado	Temas Varios en Ingl	Bodega	1	35	\N
+5046	9781565076266	A childs first steps to virtues	emily Hunter	Haverts house	1	usado	Temas Varios en Ingl	Bodega	1	35	\N
 5047	9786077808565	Planografía para arquitectos en formación	Juan Lanzagorta Vallín	Etxeta	1	usado	Arquitectura	Bodega	1	60	\N
 5048	9789687723327	Mafalda 2 	guino	Tus Quests	1	usado	Temas Varios	Estante 1	0	80	\N
 5049	9684191545	La vispera del trueno	Spota	Grijalbo	1	usado	Novelas	Estante 11	0	45	\N
@@ -5321,7 +5319,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 5057	9682100910	Cómo estudiar	Thomas F. Staton	Trillas	1	usado	Educación     	Bodega	1	30	\N
 5058	9789706070814	La princesa de las ocas	-	Hemma	1	usadp	Infantiles 	Bodega	1	10	\N
 5059	9789688358740	Sintaxis	Martha Islas / Cynthia Ramírez	UNAM	1	usado	Educación     	Bodega	1	60	\N
-5060	9783852723341	Holly's 	Martyn Hobbs	Helbling languajes	1	usado	Aprendizaje de inglé	Bodega	1	20	\N
+5060	9783852723341	Hollys 	Martyn Hobbs	Helbling languajes	1	usado	Aprendizaje de inglé	Bodega	1	20	\N
 5061	9789706273611	Manual de adiestramientos canino	-	RTM	1	usado	Temas Varios	Bodega	0	10	\N
 5062	968161528x	Los antiguos mexicanos a través de sus crónicas y cantares 	Liguel León Portilla	SEP	1	buen estado	Antropología	Bodega	0	60	\N
 5064	9789700517292	El daño que hacemos a nuestros hijos 	Ernesto Lammoglia	Grijalbo 	2	buen estado	Familia	Bodega	0	60	\N
@@ -5462,7 +5460,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 5209	9682305209	¿Hacemos tabla rasa del pasado?	Jean Chesneaux	siglo veintiuno editores	3	usado	Historia	Bodega	1	30	\N
 5210	9786074621969	La cultura mexicana en el siglo XIX	Carlos Monsivais	CM	1	usado	Estudios regionales	Bodega	0	70	\N
 5211	9786074024609	El humano social antinatural	Jorge Salcedo Gómez	Plaza y Valdés	1	poco maltratado	Estudios regionales	Bodega	1	60	\N
-5212	9771810478006	Journal Européen d'education sociale	-	A periodical of feset	1	usado	Temas Varios en Ingl	Bodega	0	40	\N
+5212	9771810478006	Journal Européen d education sociale	-	A periodical of feset	1	usado	Temas Varios en Ingl	Bodega	0	40	\N
 5213	9780060611835	The sacred Journey	Frederick Buechner	Harper	1	usado	Novelas en inglés	Estante 6	0	30	\N
 5214	8195356	Onassis	Willi Frischauer	Noguer	1	tapa maltratada	Novelas	Estante 13	1	60	\N
 5215	9788497644068	La Alquimia 	R. Benito Vidal 	Edimat	1	buen estado	Temas Varios	Estante 3	0	65	\N
@@ -5824,7 +5822,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 5586	8432305723	Historia Universal siglo XX	Wolfgang Benz	XXI	1	buenas	Historia	Repisa 7	1	60	\N
 5587	9789706510341	Los nombres	Don Delilo	Oceano	1	poco maltratado	Novelas	Estante 11	0	60	\N
 5588	9789706245632	El prócer olvidado	Rogelio López Espinoza	Secretaría General de Gobierno	1	excelente estado	Temas Varios	Estante 3	0	120	\N
-5589	9786070703973	Granados Chapa	Humberto Musacchio	Temas'dehoy	1	excelente estado	Temas Varios	Estante 3	0	100	\N
+5589	9786070703973	Granados Chapa	Humberto Musacchio	Temas dehoy	1	excelente estado	Temas Varios	Estante 3	0	100	\N
 5590	9781405454032	Meditación 	-	P	1	usado	Salud	Estante 10	0	90	\N
 5591	9786071403971	Siddartha	Hermann Hesse	EMU	1	usado	Novelas	Estante 13	0	60	\N
 5592	3528365	Las raices psicologicas del talento	Ornella Andreani. Stefania Oirio	Kapelusz	1	poco maltratado	Psicología	Estante 3	0	30	\N
@@ -5944,9 +5942,9 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 5718	9781592531387	the stress free home	Jackie Craven	quarry	1	excelentes	Artes	Estante 3	0	60	\N
 5719	9799688607274	Analisis y diseño de los espacios que habitamos	Paola Coppola Pignatelli	pax 	1	buenas	Diseño	Estante 4	0	65	\N
 5720	9789684323568	Don Segundo Sombra	Ricardo Güiraldes	Porrua	1	usado	Literatura	Estante 13	1	20	\N
-5721	9788483001547	Clavar-ne una al mall i l'altra a l'enclusa	Ernest Farrés Junyent	Columna	1	excelentes	Otros idiomas	Estante 5	0	30	\N
+5721	9788483001547	Clavar-ne una al mall i l altra a lenclusa	Ernest Farrés Junyent	Columna	1	excelentes	Otros idiomas	Estante 5	0	30	\N
 5722	6676304	La felicidad del niño	Dr James Dobson	vida	1	maltratado	Temas Varios	Estante 4	0	10	\N
-5723	7028845	L'élysée en péril	Philippe Alexandre	Le livre de ponche	1	buenas	Otros idiomas	Estante 5	0	20	\N
+5723	7028845	Lélysée en péril	Philippe Alexandre	Le livre de ponche	1	buenas	Otros idiomas	Estante 5	0	20	\N
 5724	2647640	Fuente ovejuna	Lope de vega	classics of spanish literature	1	usado	Literatura	Estante 12	0	15	\N
 5726	9789683915153	El mundo de Sofía	Jostein Gaarder	Patria/siruela	1	maltratado	Filosofía	Estante 13	0	50	\N
 5727	9788434585805	Cuando Hitler robó el conejo rosa	Judith Kerr	ALFAGUARA	1	buenas	Literatura	Estante 12	3	45	\N
@@ -6240,7 +6238,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 6041	9789706933232	Sólo para hombres	Luis Valdez Castellanos	obra nacional de la buena prensa ac	1	buenas	Superación personal	Estante 1	1	25	\N
 6042	9789688605554	PNL Transforma tu vida	Rubén Armendáriz Ramírez	Pax México	2	excelentes	Superación personal	Estante 1	0	60	\N
 6043	9788466616423	Lazos de amor	Brian Weiss	zeta	r4	usado	Novelas	Repisa 2	0	50	\N
-6044	9786071124890	Niño RICO Niño Listo	Ruch Dad's	punto de lectura	4	buenas	Superación personal	Estante 1	0	65	\N
+6044	9786071124890	Niño RICO Niño Listo	Ruch Dad s	punto de lectura	4	buenas	Superación personal	Estante 1	0	65	\N
 6050	9786071600011	El libro salvaje	Juan Villoro	Fondo de cultura económica	1	usado	Novelas	Estante 12	0	60	\N
 6051	9789681648725	Cuento negro para una noche negra	Clayton Bess	Fondo de cultura económica	1	usado	Literatura	Estante 13	1	30	\N
 6052	9789681645908	Hermano en la tierra	Robet Swindells	Fondo de cultura económica	1	usado	Infantiles 	Estante 10	0	40	\N
@@ -6415,11 +6413,11 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 6235	5860469	Historia general del psicoanalisis	Ricardo G. Mandolini 	Ciordia	3	viejo	Psicología	Bodega	0	80	\N
 6236	2707349	Diccionario de psicologia del aprendizaje	Luis F campos	eccsa	3	usado	Psicología	Bodega	0	50	\N
 6237	9789701061022	Mecánica Vectorial para ingenieros	Ferdinand P.  Beer	Mcgraw Hill	8	buenas	Ciencia	Estante 8	0	120	\N
-6239	5349512	objetivos didácticos y programación	Louis D'Hainaut	oikos Tau	3	buenas	Pedagogía	Estante 2	1	70	\N
+6239	5349512	objetivos didácticos y programación	Louis DHainaut	oikos Tau	3	buenas	Pedagogía	Estante 2	1	70	\N
 6240	6058892	Pedagogía curativa	Dr H. Asperger	LM	1	viejo	Psicología	Bodega	1	200	\N
 6241	2031447	Estructura y elaboración de pruebas para la selección de personal	Ricardo Rivera Soler	Lw	2	Usado	Psicología	Bodega	1	50	\N
 6242	7713297	Instrucción Programada	Gabriel D Ofiesh	Trillas	2	buenas	Psicología	Bodega	1	90	\N
-6243	9786073156332	La sustancia del mal	Luca D'Andrea	Alfaguara	1	excelentes	Novelas	Estante 13	0	120	\N
+6243	9786073156332	La sustancia del mal	Luca DAndrea	Alfaguara	1	excelentes	Novelas	Estante 13	0	120	\N
 6244	7502268181864	La insoportable levedad del ser	Milan Kundera	Tusquets	1	excelentes	Novelas	Estante 12	0	80	\N
 6245	9786073169127	enigmas de los dioses del México antiguo	Sofia Guadarrama Collado	B	1	excelentes	Novelas	Estante 13	0	220	\N
 6246	9786075291185	La espada de la alianza	Francisco Rodriguez Arana	BLOK	2	buenas	Novelas	Estante 13	0	70	\N
@@ -6730,7 +6728,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 6580	9789879167793	cómo leer el futuro en las hojas de té	-	Libro latino	1	usado	Temas Varios	Estante 10	0	30	\N
 6581	9788428811514	el regreso del hijo pródigo	Henri  J.  M. Nouwen	PPC	1	usado	Artes	Repisa 4	1	60	\N
 6582	96854970208	El puente de las damas	Enrique Ibarra Pedroza	Ayuntamiento de Guadalajra	1	usado	Literatura	Bodega	1	50	\N
-6583	9780395771549	A wrinkle in time	Madeline L' Engle	McDougal Littell	1	usado	Aprendizaje de inglé	Estante 2	0	40	\N
+6583	9780395771549	A wrinkle in time	Madeline L Engle	McDougal Littell	1	usado	Aprendizaje de inglé	Estante 2	0	40	\N
 6584	8402027679	Cocina internacional / Cocina Americana	Genoveva Bertrand	Bruguera	1	usado	Cocina	Bodega	0	40	\N
 6585	8402027687	Cocina internacional / cocina europea	Genoveva Bernard	Bruguera	1	usado	Cocina	Bodega	0	40	\N
 6586	7509658102225	El esclavo	Francisco J. Angel	el camino rojo	1	usado	Novelas	Estante 10	0	10	\N
@@ -6766,7 +6764,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 6621	8261781	La Estructura de la magia	Bandler-Grinder	cuatro vientos	1	usado	Temas Varios	Estante 3	0	35	\N
 6622	6990335	cien años de soledad	Gabriel Garcia Márquez	Austral	3	Maltratado	Novelas	Estante 12	0	60	\N
 6623	9789681500719	Doña Barbara 	Rómulo Gallegos	EMU	2	viejo	Novelas	Estante 12	0	20	\N
-6624	071138003911	How Nature Works	David Burnie	Reader's Digest	2	buenas	Infantiles 	Estante 10	0	60	\N
+6624	071138003911	How Nature Works	David Burnie	Readers Digest	2	buenas	Infantiles 	Estante 10	0	60	\N
 6626	9780517580493	The Plains of Passage	Jean M.Auel	Crown	1	Buenas	Novelas en inglés	Estante 6	1	70	\N
 6627	9788479018450	Come lo que te pida el cuerpo	Susie Orbach	Integral	1	buenas	Temas Varios	Estante 3	0	50	\N
 6628	980011201226100	La sombra del caudillo	Martín Luis Guzman	Sep	1	maltratado	Novelas	Estante 13	0	20	\N
@@ -7100,7 +7098,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 6977	9780062686534	Learning to see	Elise Hooper	Morrow	1	buenas	Temas Varios en Ingl	Estante 6	1	60	\N
 6978	9786073140300	Maravilloso error	Jamie Mcguire	SUMA	1	BUENAS	Novelas	Estante 11	0	70	\N
 6979	9780262133555	E- topia	william J. Mitchell	MIT	2	buenas	Temas Varios en Ingl	Estante 6	0	100	\N
-6980	9780446532235	Dude where's my country?	Michael Moore	warner	2	caja	Temas Varios en Ingl	Repisa 6	1	80	\N
+6980	9780446532235	Dude where s my country?	Michael Moore	warner	2	caja	Temas Varios en Ingl	Repisa 6	1	80	\N
 6981	1820720	permiso para el amor	Efrain Huerta	CDMX	1	BUENAS	Poesía	Estante 12	0	20	\N
 6982	9786070726880	El perfume	Parick Süskind	Seix Barral	5	excelentes	Novelas	Estante 11	0	60	\N
 6983	9786070710759	Mujeres de ojos grandes	Ángeles Mastreta	Seix barral	1	buenas	Novelas	Estante 12	0	70	\N
@@ -8745,7 +8743,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 8824	4826184	Fragmentos de un calidoscopio	Paulino Sabugal	XSiglos	R5	usado	Novelas	Estante 3	0	25	\N
 8825	9789703704699	La victoria	Jaime Sánchez Susarrey	Planeta	R3	usado	Novelas	Estante 3	1	25	\N
 8826	9780874477726	SAT Subjecy tests in mathematics levels 1&2 	-	The college word	R3	usado	Matemáticas	Estante 8	1	60	\N
-8827	9780141014784	eat right 4 blood type 0	Dr Peter J. D'Adamo con Catherine Whitne	Penguin	R2	usado	Salud	Estante 10	1	30	\N
+8827	9780141014784	eat right 4 blood type 0	Dr Peter J. DAdamo con Catherine Whitne	Penguin	R2	usado	Salud	Estante 10	1	30	\N
 8828	9780446384179	Dying to be thin	Varios	Welness	R2	usado	Temas Varios en Ingl	Estante 6	1	70	\N
 8829	9780139536397	Italian dictionary	-	MacMillan	R3	usado	Otros idiomas	Estante 5	0	85	\N
 8830	9780061198755	The secret lives of men and women	Frank Warren	William Morrow	R3	usado	Novelas en inglés	Estante 6	1	130	\N
@@ -8762,7 +8760,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 8845	9780078685453	art in focus	Gene A. Mittler	McGraw Hill	R3	usado	Artes	Repisa 4	1	150	\N
 8846	9781556433931	Quantum Touch	Richar Gordon	North Atlantic Books	R3	usado	Temas Varios en Ingl	Estante 6	0	150	\N
 8848	9781451625615	Hollywood Hypocrites	Jason Mattera	Threesold	R3	caja	Temas Varios en Ingl	Estante 6	1	130	\N
-8849	9780808709602	Communication handbook the student's guide	Susan A. Hellweg	Bussines international group	R5	usado	Temas Varios en Ingl	Estante 5	1	35	\N
+8849	9780808709602	Communication handbook the student s guide	Susan A. Hellweg	Bussines international group	R5	usado	Temas Varios en Ingl	Estante 5	1	35	\N
 8850	9781439030349	calculus of a single variable	larson Edwards	cengage 	R3	usado	Matemáticas	Estante 8	1	190	\N
 8851	9780471597735	physics	Cutnell / Johnson	Wiley	R3	usado	Psicología	Estante 9	1	200	\N
 8852	9780030499388	incontri attuali	Francesca Italiano	Irene Marchegiani Jones	R3	usado	Otros idiomas	Estante 5	0	60	\N
@@ -8772,7 +8770,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 8856	9780471309437	A l´aventure	Anne C. Coomings	Wiley	R3	usado	Otros idiomas	Estante 5	1	130	\N
 8857	9780133505214	chemistry	joseph Topich	McMurry Fay	R2	usado	Ciencia	Estante 9	1	90	\N
 8858	9780669163698	foundation course in spanish	varios	Heath	R3	usado	Otros idiomas	Estante 5	0	90	\N
-8859	219033043	passage a l' ecrit	varios	ecle	R3	usado	Otros idiomas	Estante 5	1	40	\N
+8859	219033043	passage a l ecrit	varios	ecle	R3	usado	Otros idiomas	Estante 5	1	40	\N
 8860	0669171433	chemistry survival	skills	Margate A. Brault. Margaret L. MacDevitt	R2	usado	Ciencia	Estante 9	1	25	\N
 8861	785134	Rimas, narraciones y leyenda	Gustavo A. Becquer	mexicanos unidos	R2	usado	Poesía	Estante 3	0	15	\N
 8863	9789706665157	Fierecilla domada	William Shakespeare	TM	R2	usado	Literatura	Estante 2	1	35	\N
@@ -9106,7 +9104,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 9225	9756066	escrito sobre heridas	juan antonio castañedaarellano	acento	-	usado	Filosofía	Estante 9	0	20	\N
 9226	3466413	psicoanalisis del arte y del artista	ernst kris	biblioteca del hombre contemporaneo	-	usado	Psicología	Estante 9	0	45	\N
 9227	9786077689768	donde el viento da la vuelta	jordi sierra l fabra	edebe	-	usado	Novelas	Estante 3	1	80	\N
-9228	12658476160013950000	the pilot's wife	anita sherve	back bay books	-	usado	Otros idiomas	Estante 6	0	15	\N
+9228	12658476160013950000	the pilots wife	anita sherve	back bay books	-	usado	Otros idiomas	Estante 6	0	15	\N
 9229	9781567182194	life qithout guilt	hazel m. denning	llewelyn	-	caja	Temas Varios en Ingl	Estante 6	1	80	\N
 9230	9786077689775	2083	vicente muñoz puelles	edebe	-	usado	Literatura	Estante 3	1	80	\N
 9231	9789507245213	crea tu propia revista	lumen	lumen	-	usado	Comunicación	Repisa 4	0	30	\N
@@ -9659,7 +9657,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 9834	9789706070081	larousse diccionario usal	ramon garcia pelayo	larousse	-	usado	Otros idiomas	Estante 5	1	30	\N
 9835	2034010639	Diccionario general español ingles	larousse	larousse	-	usado	Otros idiomas	Estante 5	2	100	\N
 9836	0582510554	pathway	nicolas hawkes	longman	-	usado	Otros idiomas	Estante 5	0	15	\N
-9837	2190330437	PASSAGE A L'ECRIT	christian lavenne	le cle international	-	usado	Otros idiomas	Estante 5	0	40	\N
+9837	2190330437	PASSAGE A LECRIT	christian lavenne	le cle international	-	usado	Otros idiomas	Estante 5	0	40	\N
 9838	9788478447084	contra el fanatismo	amos oz	siruela	-	usado	Educación     	Estante 5	1	30	\N
 9839	1287546	RODAS	dimitris g. davaris	dressos	-	usado	Viajes	Estante 5	1	10	\N
 9840	7522105	knowing beijing	-	-	-	usado	Viajes	Estante 5	1	15	\N
@@ -9683,7 +9681,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 9858	9448410	Estonia	nikolai jitailenko	republicas socialistas sovieticas	-	usado	Viajes	Estante 5	1	30	\N
 9859	101455	the white house	rosalyn carter	white house historical association	-	usado	Otros idiomas	Estante 5	1	30	\N
 9860	226535	Pisa su historia su arte	aldo cozzi	español	-	usado	Viajes	Estante 5	0	10	\N
-9861	2921380	El gran libro de viajes	reader's digest	-	-	usado	Viajes	Estante 5	1	40	\N
+9861	2921380	El gran libro de viajes	readers digest	-	-	usado	Viajes	Estante 5	1	40	\N
 9862	2430055	back roads america	Thomas O neill	-	-	usado	Viajes	Estante 5	1	40	\N
 9863	2602497	secrect corners of the world	victor englebert	national geographic	-	-	Viajes	Estante 5	1	30	\N
 9864	6752935	Safari	ng	National geographic	-	-	Viajes	Estante 5	1	20	\N
@@ -9743,7 +9741,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 9926	6870718	metodo fonetico de lectura	plica	plica	-	-	Educación     	Estante 5	0	10	\N
 9927	2383226	interaccion y estructura en el salon de clases	rosa marta romo beltran	-	-	usado	Educación     	Estante 5	1	20	\N
 9928	9780020332855	laurence livier a biography	anthony holden	coller books	-	-	Otros idiomas	Estante 6	1	60	\N
-9929	2900634006455	the new music therapist's handbook	suzanne B. Hanser	berklee press	-	usado	Otros idiomas	Estante 6	1	80	\N
+9929	2900634006455	the new music therapists handbook	suzanne B. Hanser	berklee press	-	usado	Otros idiomas	Estante 6	1	80	\N
 9930	9780385335683	sweet and vicious	david schickler	west area	-	usado	Otros idiomas	Estante 5	1	70	\N
 9931	9780310242840	sacred pathwatys	gary thomas	zondervan	-	-	Otros idiomas	Estante 6	1	80	\N
 9932	9780201632958	mama makes up her mind	bailey white	addison wesley	-	-	Otros idiomas	Estante 6	1	120	\N
@@ -10146,7 +10144,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 10363	9786078126125	El ultimo libro del mundo	VARIOS	GHANDI	R2	BUENAS	Novelas	Estante 3	0	60	\N
 10364	8432084018	La progresión de Aquitania	Robert Ludlun	planeta serie	r2	buenas	Novelas	Estante 2	1	60	\N
 10365	9789681101695	La creación de una nueva civilización 	Alvin y Heidi	plaza y janes	r4	buenas	Sociales	Estante 8	1	40	\N
-10366	9788434816015	la señora frisby y las ratas de nimh	Robert C.O'Brien	sm	15a	usado	Novelas	Repisa 12	0	65	\N
+10366	9788434816015	la señora frisby y las ratas de nimh	Robert C.OBrien	sm	15a	usado	Novelas	Repisa 12	0	65	\N
 10367	9788434839762	El sol de los venados 	gloria cecilia diaz	sm	5a	usado	Novelas	Estante 13	1	25	\N
 10368	9789706433206	menús vegetarianos	julia maitret	selector	-	usado	Cocina	Estante 13	0	50	\N
 10369	7509984211035	Postres mexicanos	Blanca nieto	selector	-	usado	Cocina	Estante 4	1	40	\N
@@ -10242,7 +10240,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 10467	9981530	ley y lineamientos en materia de transparencia y proteccion de datos personales 	itei	cpc	-	usado	Derecho	Estante 7	1	60	\N
 10468	9789706276209	los bandidos de rio frio	manuel payno	amantes escolares	edesa	usado	Novelas	Estante 2	1	20	\N
 10469	4675485	santa teresita del niño jesus	sor gesualda	ediciones paulinas	-	usado	Religión	Estante 13	0	15	\N
-10470	4418674	60 años selecciones	antologia de aniversario	reader's digest	-	usado	Novelas	Estante 3	0	10	\N
+10470	4418674	60 años selecciones	antologia de aniversario	readers digest	-	usado	Novelas	Estante 3	0	10	\N
 10471	9681903552	mil libros	luis neruda - antonio espina	aguilar	-	usado	Literatura	Estante 4	0	75	\N
 10472	9681903560	Mil libros	luis neruda - antonio espina	aguilar	-	usado	Literatura	Estante 4	0	75	\N
 10473	9788432311369	luis garcia vega	breve historia de la psicologia	siglo veintiuno	-	usado	Psicología	Estante 9	0	80	\N
@@ -10297,7 +10295,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 10524	7509658101716	Cocinar con chile 	-	promo libro	-	usado	Cocina	Estante 5	1	15	\N
 10525	7501001608224	Recetario	nestle	nestle	-	usado	Comunicación	Estante 4	1	10	\N
 10526	7611502576547	cocina para nios	unicef	unicef	-	usado	Cocina	Estante 4	0	40	\N
-10527	1341930	cuisine et folklore 	d'anvers,limbourg,namur	le shpinx	-	usado	Cocina	Estante 6	0	20	\N
+10527	1341930	cuisine et folklore 	danvers,limbourg,namur	le shpinx	-	usado	Cocina	Estante 6	0	20	\N
 10528	9788424184391	reposteria rapida y facil	christiane kürt	everest	-	usdo	Cocina	Estante 4	1	60	\N
 10529	9789706909794	la familia (y otras demoliciones)	German Dehesa	planeta	-	usado	Familia	Estante 13	0	50	\N
 10530	8482980270	animales muy salvajes	National geographic society	national	-	usado	Animales y naturalez	Estante 12	0	20	\N
@@ -10399,7 +10397,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 10633	9786071404893	El ecarabajo	Edgar allan poe	editmusa	-	-	Arquitectura	Estante 3	0	10	\N
 10634	7509992524011	Rimas y leyendas 	Gustavo Adolfo Becquer	edivision	-	usado	Literatura	Repisa 4	0	15	\N
 10635	9786070123580	el eucalipto ponciano	cristina pacheco	alfaguara	-	usado	Infantiles  	Estante 12	0	35	\N
-10636	9316602	Biblioteca de selecciones	selecciones del reader's digest	la habana	.	usado	Literatura	Repisa 2	3	30	\N
+10636	9316602	Biblioteca de selecciones	selecciones del readers digest	la habana	.	usado	Literatura	Repisa 2	3	30	\N
 10637	9851382	prologo al amor 	taylor caldwell	ediciones martinez roca	-	usado	Novelas	Estante 2	0	30	\N
 10638	1573416	inocencia heroica 	rene barjavel	jackson de ediciones selectas 	-	usado	Novelas	Estante 2	0	80	\N
 10639	8467415975	Novia que te vea	Rosa nissan	planeta deagostini	-	nuevo	Novelas	Estante 2	0	90	\N
@@ -10533,7 +10531,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 10779	9786073118798	sicario	molly molloy y charles bowden	grijalbo	-	usado	Biografías	Estante 11	0	40	\N
 10780	9788449202018	Espasa e forum	david McCullough	espasa	-	usado	Geografia 	Estante 13	0	130	\N
 10781	9786074808575	johnny donno	charlie stella	latrama	-	usado	novedades	Estante 13	1	100	\N
-10782	9789682804229	la verdad sobre la historia	reader's digest	-	usado	usado	novedades	Estante 13	0	100	\N
+10782	9789682804229	la verdad sobre la historia	readers digest	-	usado	usado	novedades	Estante 13	0	100	\N
 10783	7151736	universidad de guadalajara	faultad de contaduria	-	usado	usado	Estudios y ensayos	Estante 11	1	80	\N
 10784	5631582	bruselas y brujas	guia	planeta deagostini	-	usado	Viajes	Estante 5	3	20	\N
 10785	9789700515946	el yunque la ultraderecha	alvaro delgado	quinta edicion	-	usado	Política	Estante 7	0	60	\N
@@ -10706,7 +10704,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 10969	4101502	tiburon	peter benchley	pomaire	-	usado	Novelas	Estante 13	0	50	\N
 10971	968432068x	Lazarillo de tormes*vida del buscon pablos	Francisco de quevedo	porrua	-	usado	Novelas	Estante 2	1	40	\N
 10972	9789702702184	Representaciones cinematograficas del asesino en serie	Carmen V. Vidaurre	universidad de guadalajara	-	usado	Artes	Estante 4	0	60	\N
-10973	9782266200813	Toutes ces choses qu'on ne's s'est pas dites	marc levy	pocket	-	usado	Otros idiomas	Estante 5	0	40	\N
+10973	9782266200813	Toutes ces choses quon nes s est pas dites	marc levy	pocket	-	usado	Otros idiomas	Estante 5	0	40	\N
 10974	9789706273048	Secretos de la eterna juventud	-	-	-	usado	Superación personal	Estante 1	2	30	\N
 10975	9789706073242	Frances para todos	larousse	-	-	usado	Diccionarios	Estante 5	0	45	\N
 10976	9788449325168	Dioses y diosas de la grecia antigua	explicados a todo el mundo	paidos	-	usao	Historia	Estante 13	0	45	\N
@@ -10754,7 +10752,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 11022	9786073102209	Mordiendo manzanas y besando sapos	Doly Mallet	Grijalbo	1	Buenas	Superación personal	Repisa 1	2	90	\N
 11023	9786073106221	Soñar en grande	Lorena Ochoa	Grijalbo	1	Buenas	Biografías	Estante 11	0	50	\N
 11024	9780439023481	The hunger games	Suzanne Collins	Scholastic Press	1	Excelente	Novelas en inglés	Estante 6	0	90	\N
-11025	9782264023278	Les mémoire d'une chanteuse allemande	Devrient	-	1	Usado	Otros idiomas	Estante 5	1	60	\N
+11025	9782264023278	Les mémoire d une chanteuse allemande	Devrient	-	1	Usado	Otros idiomas	Estante 5	1	60	\N
 11026	6652362	Símbolos patrios	Cámara de diputados	Cámara de diputados	1	Buenas	Infantiles  	Estante 12	0	30	\N
 11027	9789706663306	Rápidos y fácies aviones de papel	Paul Jackson	Tomo	1	Buenas	Infantiles  	Estante 12	0	25	\N
 11028	9786070124136	El papalote y el nopal	Aline Pettersson	Alfaguara infantil	1	Buenas	Infantiles  	Estante 12	0	15	\N
@@ -10786,8 +10784,8 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 11054	9780307277770	The painted Veil	Somerser Maugham	Vintage	1	usado	Novelas en inglés	Estante 6	0	50	\N
 11055	5069400799	my life in france	Julia Child	Anchor Books	1	Buenas	Novelas en inglés	Estante 13	0	65	\N
 11056	9780525576815	Sharp objects	Gillian Flynn	Crown	1	Maltratado	Novelas en inglés	Estante 6	1	40	\N
-11057	9781426211904	Cesar millan's short guide to a happy dog	Cesar Millan	Nat Geo Wild	1	Buenas	Novelas en inglés	Estante 6	0	60	\N
-11058	9780316284950	White	Janet Fitch	Oprah's Club	1	Buenas	Novelas en inglés	Estante 6	0	40	\N
+11057	9781426211904	Cesar millans short guide to a happy dog	Cesar Millan	Nat Geo Wild	1	Buenas	Novelas en inglés	Estante 6	0	60	\N
+11058	9780316284950	White	Janet Fitch	Oprahs Club	1	Buenas	Novelas en inglés	Estante 6	0	40	\N
 11059	9780425274866	Big Little Lies	Liane Moriarty	Berkley	1	Buenas	Novelas en inglés	Estante 12	0	70	\N
 11060	9786073132770	La herencia	Jorge G. Castañeda	Debolsillo	primera	excelentes	Política	Estante 7	0	30	\N
 11061	5880043	el mundo de ingles de disney 3	Diane Warshawsky	Lexicon	---	usado	Infantiles  	Estante 12	1	25	\N
@@ -11007,7 +11005,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 11307	1234567	La isla de la aventura	R.L. Stevenson	Bruguera	Estante 12	Usado	Infantiles  	Repisa 4	1	40	\N
 11308	9789682804335	Soluciones naturales para la diabetes	Pat Harper y Richard Laiberte	Seleciones	Repisa 1 	Buenas	Salud	Estante 10	1	50	\N
 11311	9780671449032	oposittes	werhgñ	ñoigjflk	ñfgfklj	{flkjg{j	Infantiles  	Bodega	0	25	\N
-11312	9782277111658	La cicatrice	Bruce Lowery	J'ai lu	repisa 1	Buenas	Otros idiomas	Estante 5	0	45	\N
+11312	9782277111658	La cicatrice	Bruce Lowery	Jai lu	repisa 1	Buenas	Otros idiomas	Estante 5	0	45	\N
 11313	9788497110198	Días memorables	Michael Cunningham	Quinteto	Repisa 3	Buenas	Novelas	Estante 2	0	90	\N
 11314	9684330456	Germinados, el alimento más perfecto y completo 	Blanca Domínguez de Díez Gutiérrez	Natura	Repisa 5	usado	Cocina	Estante 4	1	50	\N
 11316	968161898x	El canto de la grilla	Ramón Rubín	Lecturas mexicanas	Repisa 4	Buenas	Novelas	Estante 2	1	40	\N
@@ -11063,7 +11061,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 11370	9786078560158	La novela de México en el siglo XIX	León Guillermo Gutiérrez	Asterisco	Repisa 1 en las repi	Cerrado	Estudios y ensayos	Estante 11	0	60	\N
 11371	9788496778740	Hacia rutas salvajes	Jon Krakauer	b de bolsillo	-	buenas	novedades	Estante 12	0	80	\N
 11372	9687831375	FELICIANO PEÑA, DE LA HONRADEZ Y EL ARRAIGO PROFESIONAL	RAQUEL TIBOL	LA RANA	-	buenas	Artes	Estante 10	0	75	\N
-11373	0312256944	The Entertainers	Sir John Gielgud	St. Martin's Press	-	 buenas	Artes	Estante 10	1	85	\N
+11373	0312256944	The Entertainers	Sir John Gielgud	St. Martin s Press	-	 buenas	Artes	Estante 10	1	85	\N
 11374	 9786072701090	SILLA MILENARIA	CHAPA MARTHA	VISION 2020	-	buenas	novedades	Estante 10	1	80	\N
 11375	8448215028	Fetch-up	Olga Adelantado	Valencia	-	buenas	Artes	Estante 10	1	120	\N
 11376	844821501x	Moradas Anonimas	Natividad Navalon	Valencia	-	buenas	novedades	Estante 10	1	25	\N
@@ -11254,12 +11252,12 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 11594	9780679781615	Compañero, vida y muerte del Che Guevara	Jorge G. Castaneda	vintage espanol	-	buenas	novedades	Estante 13	0	140	\N
 11598	968413049x	Casa de muñecas / Juan Gabriel Borkman	Henrik Ibsen 	Colección austral 	Repisa 4	Buenas	Novelas	Estante 2	0	55	\N
 11599	9780470137444	Google Sketchup for Dummies	Aidan Chopra	Wiley	Repisa 4	Buenas	Temas Varios	Estante 10	0	70	\N
-11601	9682802040	Jaque perpetuo / Horowitz y la señora washington / Plaga misteriosa / El gato en	Loup Durand / Henry Denker / Ken McClure	Reader's Digest	Repisa 4	Buenas	Novelas	Estante 2	1	40	\N
+11601	9682802040	Jaque perpetuo / Horowitz y la señora washington / Plaga misteriosa / El gato en	Loup Durand / Henry Denker / Ken McClure	Readers Digest	Repisa 4	Buenas	Novelas	Estante 2	1	40	\N
 11602	3876810531	Die Bremer Stadt-Musikanten	Friederich Röver	Bremen	Repisa 2	Maltratado	Otros idiomas	Estante 5	0	30	\N
 11603	8434573628	El nacimiento de un niño	Sin autor	Salvat	Repisa 5	Buenas	Familia	Estante 6	1	45	\N
 11604	9788497842846	¡A mediar tocan! 	Antonio Sastre Peláez	Gedisa	Repisa 3	Buenas	Comunicación	Estante 4	0	160	\N
 11605	9789681666095	El saber y los sentidos	Eliezer Braun	Fondo de Cultura Económica	Repisa 1	Buenas	Antropología	Estante 11	0	25	\N
-11606	847386302X	La pimpinela escarlata	Baronesa d'Orczy	Grandes éxitos de bolsillo	repisa 2	Buenas	Novelas	Estante 2	1	100	\N
+11606	847386302X	La pimpinela escarlata	Baronesa dOrczy	Grandes éxitos de bolsillo	repisa 2	Buenas	Novelas	Estante 2	1	100	\N
 11608	9789681669423	¿Existe el método científico? 	Ruy Pérez Tamayo	Fondo de Cultura Económica	Repisa 2	Buenas	Filosofía	Estante 9	0	40	\N
 11609	9789684287020	Experiencias de una madre	Ana Sánchez	Minos	Repisa 5 	buenas	Familia	Estante 6	0	50	\N
 11610	9780721416403	Stories for under fives	Farmyard	Ladybird	Repisa 4	Buenas	Infantiles  	Estante 12	0	25	\N
@@ -11558,7 +11556,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 11953	1673300	El hipopotamo amarillo	Alan Rogers	pequeños gigantes	-	buenas	Infantiles  	Estante 12	0	20	\N
 11954	3321283	El oso verde	Alan Rogers	pequeños gigantes	-	buenas	Infantiles  	Estante 13	0	20	\N
 11955	1403672	El rinoceronte rojo	Alan rogers	Pequeños gigantes	-	buenas	Infantiles  	Estante 12	0	20	\N
-11956	6076546	you're all right	Joy Wilt	weekly reader	-	bueenas	Infantiles  	Estante 12	1	50	\N
+11956	6076546	you re all right	Joy Wilt	weekly reader	-	bueenas	Infantiles  	Estante 12	1	50	\N
 11957	033500819469	Just me and my little sister	Mercer Mayer	golden	-	usado	Infantiles  	Estante 12	0	5	\N
 11958	9035948	Teo, vamos al parque	Violeta denou	TIMUN MAS	-	buenas	Infantiles  	Estante 12	0	15	\N
 11959	7208671	Cardiopatía isquémica tomo 1	Ignacio Chávez Rivera	-	-	buenas	Medicina	Estante 9	1	70	\N
@@ -11600,7 +11598,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 11997	9780829760231	Santa biblia	-	-	-	buenas	Religión	Estante 13	1	100	\N
 11998	9786077429418	Jóvenes y violencia en Jalisco Tomo 1	varios	UdeG	-	buenas	Antropología	Estante 8	0	55	\N
 11999	9788590328117	Autodiagnóstico revitalizacao diária	Ivanildo Cruz	apoio	-	usado	Otros idiomas	Estante 5	1	15	\N
-12000	9782277219163	Les croisades vues par les arabes	Amin Maalouf	J'ai lu L´histoire	-	buenas	Otros idiomas	Estante 5	0	30	\N
+12000	9782277219163	Les croisades vues par les arabes	Amin Maalouf	Jai lu L´histoire	-	buenas	Otros idiomas	Estante 5	0	30	\N
 12001	9789700707761	Vidas de grandes artistas	Giorgio Vasari	porrúa	-	buenas	Biografías	Estante 11	1	35	\N
 12002	9848052	Cross Crimes 	Xavier Mexiah	black list	-	buenas	Novelas en inglés	Estante 6	1	20	\N
 12003	9684230443	Se me esta acabando el tiempo	Nini trevit de Alvarez	jus	-	buenas	novedades	Estante 13	0	45	\N
@@ -11609,7 +11607,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 12006	9786079019013	Cardenal Juan Sandoval Íñiguez	Juan Manuel Reyes	divulgación	-	buenas	Religión	Estante 13	1	50	\N
 12007	9788431517045	Como hacer los licores en casa	Antonio Primiceri	de Vecchi	-	buenas	Temas Varios	Estante 10	0	25	\N
 12008	9786079605308	Sesenta pilares	-	cmic	-	buenas	Arquitectura	Estante 4	1	80	\N
-12009	073999100082	Let's play recorder instruction book	lao sevush	HP	-	usado	Artes	Estante 4	0	5	\N
+12009	073999100082	Lets play recorder instruction book	lao sevush	HP	-	usado	Artes	Estante 4	0	5	\N
 12010	9789702713968	introduccion a la identificacion de organismos	Josué Álvarez Borrego	UdeG	-	buenas	Biología	Estante 12	1	60	\N
 12011	9782070300075	Alcools	Apollinaire	nrf	-	buenas	Otros idiomas	Estante 5	1	65	\N
 12012	9780307397157	The tiger	John Vaillant	canada reads	-	usado	Novelas en inglés	Estante 6	1	40	\N
@@ -12005,7 +12003,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 12495	9788841294178	Le grandi fiabe in musica	Giovanni Caviezel	De Vecchi	-	-	Otros idiomas	Estante 5	1	50	\N
 12496	9788888716220	Nella Vecchia Fattoria 	Giacobetti, GiovanniKramer, Gorni	-	italiano	-	Otros idiomas	Estante 5	1	80	\N
 12498	9780316776967	me talk pretty one day 	Sedaris, David	.	.	.	Novelas en inglés	Estante 6	0	60	\N
-12499	8566344	McClane's Standard Fishing Encyclopedia And International Angling Guide	McClane, A J	-	-	-	Otros idiomas	Estante 5	1	150	\N
+12499	8566344	McClanes Standard Fishing Encyclopedia And International Angling Guide	McClane, A J	-	-	-	Otros idiomas	Estante 5	1	150	\N
 12500	9789707311145	DIABLO GUARDIAN	XAVIER VELASCO	 PUNTO DE LECTURA	-	-	Novelas	Estante 2	0	60	\N
 12501	9686398007	consumo gusto el humor en la revista del consumidor 	-	-	-	-	Temas Varios	Estante 10	1	180	\N
 12504	9789688873731	DISEÑO DE LOGOTIPOS	 REESE/STOLTZE	Gustavo Gili	-	-	Artes	Estante 4	1	160	\N
@@ -12020,7 +12018,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 12515	9786073228022	Mercadotecnia Introduccion A La Investigacion De Mercados. Enfoque Para America 	Benassini, Marcela	Pearson	-	-	Mercadotecnia	Estante 8	1	150	\N
 12516	9789706862938	Publicidad - Un Enfoque Latinoamericano	Fernandez Valinas, Ricardo	-	-	-	Mercadotecnia	Estante 8	0	100	\N
 12517	9780060007737	22 Immutable Laws of Branding	Ries, Al	-	-	-	Mercadotecnia	Estante 8	1	100	\N
-12518	9780307739964	GIRL WHO KICKED THE HORNET'S NEST	LARSSON STIEG	 VINTAGE	-	-	Otros idiomas	Estante 6	0	50	\N
+12518	9780307739964	GIRL WHO KICKED THE HORNETS NEST	LARSSON STIEG	 VINTAGE	-	-	Otros idiomas	Estante 6	0	50	\N
 12519	9780307455352	Girl With The Dragon Tattoo, The	Larsson, Stieg	Lrh (Literatura Random House)	-	-	Novelas en inglés	Estante 6	0	55	\N
 12520	9788483195321	metodologia de investigacion en cooperacion para el desarollo	enara echart	catarata	-	buena	novedades	Estante 13	1	120	\N
 12522	9780192627445	critical appraisal of epidemilogical studies and clinical trials	mark elwood	oxford	-	buenas	Medicina	Estante 9	1	200	\N
@@ -12042,7 +12040,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 12539	968280101	De Madera 80 Proyectos Para El Hogar	-	Selecciones Del Reader	-	-	Temas Varios	Estante 10	1	100	\N
 12540	3039673	decoracion de interiores 	-	sears 	5	-	Diseño	Estante 4	1	75	\N
 12541	9781450880367	Princesita Sofia Mi Primer Busca Y Encuentra	Varios Autores	Medialive	-	-	Infantiles  	Estante 12	0	30	\N
-12542	9682801192	El Hombre Dos millones de años de historia	Reader's Digest	-	--	-	Historia	Estante 7	1	50	\N
+12542	9682801192	El Hombre Dos millones de años de historia	Readers Digest	-	--	-	Historia	Estante 7	1	50	\N
 12543	9789505157358	20 años con inodoro pereira	 Roberto Roberto	Fontanarrosa	-	-	novedades	Estante 12	0	70	\N
 12544	968210114x	El Secreto de la Mansion Conover	Dorothy Daniels	.	.	.	Novelas en inglés	Estante 2	1	40	\N
 12545	8478890130	 CUADERNO DE NOTAS	LEONARDO DA VINCi	-	-	-	Biografías	Estante 11	0	20	\N
@@ -12086,7 +12084,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 12588	9786077646525	El Rapto De Eloisa	Esquinca, Jorge	-	-	-	novedades	Estante 11	0	80	\N
 12589	9786070061004	VALLES Y ALTURAS	GRIMALDO, ADRIANA	-	-	-	novedades	Estante 13	1	40	\N
 12590	9788492963805	Paris. Gente Viajera	Amo, Elena Del	-	-	-	novedades	Estante 13	0	40	\N
-12591	9780006550433	The Bonesetter's Daughter	Tan, Amy	-	-	-	novedades	Estante 10	1	40	\N
+12591	9780006550433	The Bonesetters Daughter	Tan, Amy	-	-	-	novedades	Estante 10	1	40	\N
 12592	9786074429695	Comportamiento Del Consumidor 	Schiffman, Leon / Lazar Kanuk, Leslie	-	-	-	Mercadotecnia	Estante 13	0	90	\N
 12593	9789683804587	COMO PROTEGER Y AUMENTAR LAS GANANCIAS DE SU EMPRESA EN UN MERCADO COMPETIDO	UQUILLAS	-	-	-	Mercadotecnia	Estante 13	1	50	\N
 12594	9788427712157	Manual De Economia De La Educacion	Fermoso Estebanez, Paciano	-	-	-	Mercadotecnia	Estante 13	1	90	\N
@@ -12256,10 +12254,10 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 12775	9786071109668	El año de Saeko	Kyoichi Katayama	Alfaguara	2011	Usado	Novelas	Estante 2	1	80	\N
 12776	7963714	El arte de la pausa	Jesús Ramón Ibarra	Fomento de Cultura Regional	2006	Buenas 	Poesía	Estante 1	1	30	\N
 12777	2931054	Administración Y Gerencia de Empresas 	Henry L. Sisk Y Mario Sverdik 	SOUTH-WESTERN PUBLISHING CO	1979	Maltratado	Administración	Estante 1	1	70	\N
-12778	9788845226571	L' Alchimista 	Paulo Coehlo	Biompiani	1998	Usado	Otros idiomas	Estante 1	0	30	\N
+12778	9788845226571	L Alchimista 	Paulo Coehlo	Biompiani	1998	Usado	Otros idiomas	Estante 1	0	30	\N
 12779	7590221	La Rueda de la Fortuna	Falcón 	Hexágono	1991	Usado Buenas	novedades	Estante 1	1	90	\N
 12780	00065	Hola	Alguien	k	8	uh	Administración	Estante 1	1	50	\N
-12781	9789707702257	Ejercicios Sin Pesas	Men's Health	Aguilar	2006	Maltratado	Deportes	Estante 1	1	20	\N
+12781	9789707702257	Ejercicios Sin Pesas	Mens Health	Aguilar	2006	Maltratado	Deportes	Estante 1	1	20	\N
 12782	9786071128690	Adán y Eva  Sexo Alquímico	Guillermo Ferrara	alamah	2013	Nuevo	Sexualidad	Estante 1	1	80	\N
 12783	7509991211424	Venus en pantalones de mezclilla	Natalie Bartle	Diana	2001	Usado	Sexualidad	Estante 1	1	95	\N
 12784	053401108X	Sexualidad Humana de McCary 	James Leslie McCary Stephen P. McCary 	El manual moderno	1983	Maltratado 	Sexualidad	Estante 1	1	60	\N
@@ -13177,7 +13175,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 13760	9780805048315	THIS WILD DARKNESS	Harold Brodkey	Henry Holt & Co	1996	Usado	Biografías	Estante 8	1	100	\N
 13761	9780738547565	Surfing in San Diego	 John C. ElwellJohn C. Elwell	Arcadia Publishing	2007	buenas 	Temas Varios en Ingl	Estante 8	1	70	\N
 13762	9780786851720	SOLD	 Patricia McCormick	Hyperion	2008	 regular	Novelas en inglés	Estante 8	0	80	\N
-13763	9780142421840	Jefferson's Sons: A Founding Father’s Secret Children 	 Kimberly Brubaker Bradley	Puffin Books	2013	buenas 	Novelas en inglés	Estante 8	1	70	\N
+13763	9780142421840	Jeffersons Sons: A Founding Father’s Secret Children 	 Kimberly Brubaker Bradley	Puffin Books	2013	buenas 	Novelas en inglés	Estante 8	1	70	\N
 13764	9780684859972	Until Today! : Daily Devotions for Spiritual Growth and Peace of Mind	 Iyanla Vanzant	Atria Books	2001	buenas 	Superación personal	Estante 8	1	110	\N
 13765	9781573227193	Inner Revolution	 Robert A. F. ThurmanRobert A. F. Thurma	Riverhead Books	1999	 regular	Religión	Estante 8	2	150	\N
 13766	9781476729091	The Rosie project	Graeme Simsion 	simon spotlight entertaiment	Primera	Buenas	Novelas en inglés	Estante 8	0	140	\N
@@ -13969,7 +13967,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 14616	9780583640800	Conserve la salud con ayuda de la herbolaria 	NA	Aguilar	NA	usado	Salud	Estante 12	1	20	\N
 14617	9780737530100	En el mundo de la ingenieria civil 	Neil P.	Herrero Hermanos, Ediciones	NA	 regular	Ingeniería	Estante 7	0	20	\N
 14618	9789700512297	Los escandalos 	Rafael Loret de Mola	Mondadori	-	Buenas	Política	Estante 6	1	40	\N
-14619	9782011559746	Les aventures d'Arsene Lupin	Maurice Leblanc	Hachette	-	 regular	Otros idiomas	Estante 9	1	20	\N
+14619	9782011559746	Les aventures dArsene Lupin	Maurice Leblanc	Hachette	-	 regular	Otros idiomas	Estante 9	1	20	\N
 14620	9782278060986	Quinze jours pour reussir	Pierre Delaisne	didier	-	usado	Otros idiomas	Estante 9	1	30	\N
 14621	9789700058689	La luz de la fe 	S.S Papa Francisco 	buena prensa	-	Buenas	Religión	Estante 1	2	20	\N
 14622	97967606170	Guia exploratoria y signos clinicos en la practica medica	Arnulfo Irigoyen	Editorial Familiar MExicana	2002	Buenas	Medicina	Estante 7	1	60	\N
@@ -14027,8 +14025,8 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 14679	9780635840608	Embriologia basica	Keit L- More	Nueva editorial interamericana	1976	Buenas	Medicina	Estante 7	1	80	\N
 14680	9789707800816	cuentos chinos	Andres Oppenheimer 	Debolsillo	-	usado	Política	Estante 6	1	60	\N
 14681	9780579275030	Hacia la medicina preventiva y la educacion para la salud	varios	Varios	-	usado	Salud	Estante 7	1	60	\N
-14682	9780285201545	Elementos de administracion 	Harord Koontz/ Cyril O'Donnell/ Heinz We	Mc Graw Hill	tercera	usado	Administración	Estante 7	1	100	\N
-14683	9780136513933	Elementos de administracion moderna 	Harold Koontz/ Cyril O'Donnell	Mc Graw Hill	-	 regular	Administración	Estante 7	1	80	\N
+14682	9780285201545	Elementos de administracion 	Harord Koontz/ Cyril ODonnell/ Heinz We	Mc Graw Hill	tercera	usado	Administración	Estante 7	1	100	\N
+14683	9780136513933	Elementos de administracion moderna 	Harold Koontz/ Cyril ODonnell	Mc Graw Hill	-	 regular	Administración	Estante 7	1	80	\N
 14684	9780434283187	La economía subterránea de México 	varios	Diana	-	Buenas	Economía	Estante 7	1	30	\N
 14686	970460528177	Analisis de laboratorio y pruebas diagnosticas 	Siegfried Kebler	CELSUS	-	Buenas	Medicina	Estante 7	1	30	\N
 14687	9780435272029	The narrow path	Francis Selormey 	Heinemann	-	usado	Novelas en inglés	Estante 8	0	30	\N
@@ -14304,7 +14302,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 14981	9780837179735	El cuarto de las damas	Jean Bourin	emece	1980	Regular	Novelas	Estante 2	1	40	\N
 14982	9704205966	El obsceno pajaro de la noche	Jose Donoso	Argos Vergara	1979	Buenas	Novelas	Estante 2	1	70	\N
 14983	9780425995815	Wild animus 	Rich Shapero	too far media	-	Buenas	Novelas en inglés	Estante 12	1	80	\N
-14984	9780384020689	Time's Convert 	Deborah Harkness	Viking	-	Buenas	Novelas en inglés	Estante 12	1	70	\N
+14984	9780384020689	Times Convert 	Deborah Harkness	Viking	-	Buenas	Novelas en inglés	Estante 12	1	70	\N
 14985	9780791273340	Vademecum 	Jose de Jesus Velazquez Sanchez	Porrúa 	-	usado	Educación     	Estante 12	1	90	\N
 14986	9780249400038	Mr nice	Howard Marks 	vintage books	-	 regular	Biografías	Estante 12	1	40	\N
 14987	9780113034055	como estudiar 	thomas F. Staton	trillas	-	usado	Educación     	Estante 12	1	20	\N
@@ -14902,7 +14900,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 15650	9786074043747	200 tips Almacenaje	Varios	numen	-	Buenas	Diseño	Estante 4	1	40	\N
 15651	9786070737466	La dama de la fe 	Ester Bezerra	Planeta	-	Usado	Derecho	Estante 6	1	70	\N
 15652	9786074509991	Las bases del estado 	Jorge Chaires Zaragoza 	universidad de guadalajara 	-	Usado	Derecho	Estante 6	1	50	\N
-15653	9788429312621	El liderazgo efectivo	Anthony D'souza	Sal Terrae	-	Usado	Temas Varios	Estante 1	1	35	\N
+15653	9788429312621	El liderazgo efectivo	Anthony Dsouza	Sal Terrae	-	Usado	Temas Varios	Estante 1	1	35	\N
 15654	9789681907945	Un mundo desbocado 	Anthony Giddnes 	Taurus	-	Buenas	Temas Varios	Estante 11	1	50	\N
 15655	7509991163402	El arte de servir en hoteles y restaurantes 	Raul Ortiz Muñoz	Diana	-	Usado	Cocina	Estante 4	1	30	\N
 15656	9789706131447	Metodología de las ciencias sociales 	Gabriel Gutierrez Pantoja	Oxford Bookworms	Segunda	Usado	Sociales	Estante 5	1	80	\N
@@ -14939,7 +14937,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 15695	9789681909222	Los patriotas 	Julio Scherer Garcia/ Carlos Monsivais 	Aguilar	-	Buenas	Política	Estante 6	1	40	\N
 15696	7706894077694	Nuevo libro del embarazo y nacimiento 	Miriam Stoppard	Norma	-	Usado	Salud	Estante 12	1	30	\N
 15697	7509984120818	nomenclatura quimica inorganica 	F.A, Baldor 	Selector	-	Usado	Temas Varios	Estante 7	1	20	\N
-15698	9783836519564	Favourite Spa's	Angelika Taschen 	Taschen	-	Buenas	Diseño	Estante 4	1	70	\N
+15698	9783836519564	Favourite Spas	Angelika Taschen 	Taschen	-	Buenas	Diseño	Estante 4	1	70	\N
 15699	9786074370355	ideas espacios 	Varios	AM	-	Buenas	Diseño	Estante 4	0	70	\N
 15700	9783833125690	Lofts 	Varios	Konemann	-	Usado	Diseño	Estante 4	1	50	\N
 15701	9786074371857	Ideas casas modernas	Varios	AM	-	Buenas	Diseño	Estante 4	1	70	\N
@@ -15341,7 +15339,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 16173	9785832746906	Biblioteca del ingeniero Quimico	Varios	McGrawHill	1985	Buenas	Ingeniería	Estante 7	5	50	\N
 16174	978884923577	Calculos de quimica analitica	Hamilton-simpson-ellis	McGrawHill	1985	Usado	Ingeniería	Estante 7	1	20	\N
 16175	9882647812	Enciclopedia de Mexico	Jose Rogelio Alvarez	-	1977	Buenas	Historia	Estante 6	5	80	\N
-16176	9782647356177	La fuerza de las palabras 	Varios	selecciones del Reader's Digest 	-	Usado	Superación personal	Estante 1	1	150	\N
+16176	9782647356177	La fuerza de las palabras 	Varios	selecciones del Readers Digest 	-	Usado	Superación personal	Estante 1	1	150	\N
 16177	9786070756474	Si tu me miras 	Daniela Marquez Colodro 	Planeta	primera	Buenas	Infantiles  	Estante 13	1	50	\N
 16178	9786070128738	La amistad bate la cola 	Marina Colasanti 	loqueleo	Segunda	Usado	Infantiles  	Estante 13	0	20	\N
 16179	9786070128530	Emiliano Zapata, un soñador con bigotes	Guillermo Samperio	loqueleo	Segunda	Usado	Infantiles  	Estante 13	1	30	\N
@@ -15369,7 +15367,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 16201	9789706138033	Teoria general del proceso 	Jose Ovalle Favela 	Oxford Bookworms	sexta	Regular	Derecho	Estante 6	1	80	\N
 16202	9789706134332	Derecho constitucional 	Elisur Arteaga Nava 	Oxford Bookworms	Segunda	Regular	Derecho	Estante 6	0	150	\N
 16203	9789706138125	Derecho procesal civil 	Cipriano Gomez Lara 	Oxford Bookworms	septima	Usado	Derecho	Estante 6	1	120	\N
-16204	9789682481291	Dejalos ir con amor 	Nancy O'connor	Trillas	-	Regular	Superación personal	Estante 1	0	70	\N
+16204	9789682481291	Dejalos ir con amor 	Nancy Oconnor	Trillas	-	Regular	Superación personal	Estante 1	0	70	\N
 16205	9780921667056	De animales a dioses 	Yuval Noah Harari	Debate	-	Buenas	Temas Varios	Estante 11	1	170	\N
 16206	9786074009743	Lecciones de perdida y vida 	Michele A. Reiss	Oceano	-	Usado	Superación personal	Estante 1	1	70	\N
 16207	9786451813437	Ley del notario del estado de jalisco 	.	paco	-	Buenas	Derecho	Estante 6	1	30	\N
@@ -15662,7 +15660,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 16547	9788439704836	Domingo Negro	Thomas Harris	Mondadori	-	Buenas	Novelas	Estante 2	0	30	\N
 16548	97331851360	Raices 	Alex Haley	Planeta	-	Buenas	Novelas	Estante 2	1	30	\N
 16549	98788582610	El sol desnudo	Isaas Asimov	Printer Industria	-	Buenas	Novelas	Estante 2	1	20	\N
-16550	7503018244495	Scott pilgrim	Bryan Lee O'Malley	Kamite	-	Buenas	novedades	Bodega	1	80	\N
+16550	7503018244495	Scott pilgrim	Bryan Lee OMalley	Kamite	-	Buenas	novedades	Bodega	1	80	\N
 16551	9784091103444	Tatuaje	Manuel Vazquez montalban	Plaza y Janes	-	Buenas	Novelas	Estante 2	1	30	\N
 16552	981708132859	En voz de borges	Waldermar Verdugo-Fuentes	Eosa	1986	Usado	Novelas	Estante 2	1	20	\N
 16553	97843560818	Marketing y ventas de productos industriales	Florian Reyes	Esic	1993	Buenas	Mercadotecnia	Estante 12	1	60	\N
@@ -15689,7 +15687,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 16578	9789584101044	Investigacion integral de mercados 	Jose Nicolas Jany	McGrawHill	Segunda	Buenas	Mercadotecnia	Estante 11	1	80	\N
 16579	7706894081530	Marketing 1X1	Varios	Norma	-	Buenas	Mercadotecnia	Estante 11	1	60	\N
 16580	9789684197459	Poder sin limites 	Anthony Robbins 	Grijalbo	-	Usado	Superación personal	Estante 1	0	40	\N
-16581	9788479531614	La venta con PNL	Joseph O'connor	Urano	-	Usado	Mercadotecnia	Estante 11	0	70	\N
+16581	9788479531614	La venta con PNL	Joseph Oconnor	Urano	-	Usado	Mercadotecnia	Estante 11	0	70	\N
 16583	9788949004310	Crimen de color oscuro	Ana maria MAqueo	Eosa	-	Buenas	Novelas	Estante 2	1	10	\N
 16585	9715959466	La dieta south beach	Dr. Arthur Agatston	Rodale	-	Buenas	Temas Varios	Estante 8	1	40	\N
 16586	9890115824	El marketing del siglo XXI	Varios	Vergara Business	2000	Buenas	Mercadotecnia	Estante 10	1	40	\N
@@ -15815,7 +15813,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 16729	9789802374335	La mascara de cuero	J.M. Soto	Equinoccio	-	Buenas	Novelas	Estante 2	1	20	\N
 16730	9789684321953	La vida es un sueño y El alcalde de Zalamea	Carderon de la barca	porrua	decimoquinta	Usado	Literatura	Estante 3	1	30	\N
 16732	9786071100382	Quiubole con... interactivo	Gaby Vargas y Yordi Rosado	Aguilar	Segunda	Buenas	novedades	Estante 12	0	60	\N
-16734	9782098368996	Hijo del aire 	Jorge Daniel D'Alwssandro 	Dock	primera	Buenas	Poesía	Estante 3	0	20	\N
+16734	9782098368996	Hijo del aire 	Jorge Daniel DAlwssandro 	Dock	primera	Buenas	Poesía	Estante 3	0	20	\N
 16735	9786608641036	El kamasutra  	Vatsyayana	Editores mexicanos unidos	-	Usado	Sexualidad	Estante 1	0	30	\N
 16736	9789583015380	Aprende violin y otos instrumentos de cuerda 	Alison Hunka y Philippa Bunting	Panamericana	-	Nuevo	Artes	Estante 4	0	50	\N
 16737	9781472304346	El cuerpo humano 	Varios	Parragon	-	Buenas	Salud	Estante 12	0	60	\N
@@ -15906,7 +15904,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 16844	9786079451608	Catecismo de la iglesia catolica compendio	Varios	casa del catequista 	-	Buenas	Religión	Estante 1	1	50	\N
 16845	8422010453	la liturgia fuente de la santificación	Teodoro Cardenal	La Editorial Católica 	1982	usado	Religión	Estante 1	1	10	\N
 16846	9786975215564	cantos de semana santa	-	-	1983	maltratado	Religión	Estante 1	1	10	\N
-16847	9684422415	breve sintesis del catecismo de la iglesia catolica en preguntas y respuestas	P. Nicanor Ramos Lores 	Libreria Parroquial de Claveria	1993	Usado	Religión	Estante 1	1	30	\N
+16847	9684422415	breve sintesis del catecismo de la iglesia catolica en preguntas y respuestas	P. Nicanor Ramos Lores 	public Parroquial de Claveria	1993	Usado	Religión	Estante 1	1	30	\N
 16848	9787668105773	curso condensado de armonia tradicional 	Paul Hindemith	Ricordi Americana	1949	maltratado	Artes	Estante 1	1	50	\N
 16849	9781785996382	emma	Jane Austen	Arcturus	2022	usado	Novelas en inglés	Estante 1	0	30	\N
 16850	9780940590199	principios fundamentales de nosologia	Dr. Santiago W. Calderón P-	Editorial FONT	1984	usado	Medicina	Estante 1	1	100	\N
@@ -16076,7 +16074,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 17030	9786077355021	El quehacer del director	Carlos Ruiz Gonzales	Oceano	-	Buenas	Superación personal	Estante 1	0	20	\N
 17031	9788495348920	Abundancia	Varios	Antoni Bosch	-	Buenas	Superación personal	Estante 1	0	60	\N
 17032	9780443971181	Como cambian los regimenes politucos	Leonardo Morlino	Centro de estudios constitucionales	-	Buenas	Política	Estante 6	0	40	\N
-17033	9781481457361	I love you dad	Daniel Tiger's	-	-	Usado	Infantiles  	Estante 13	0	20	\N
+17033	9781481457361	I love you dad	Daniel Tigers	-	-	Usado	Infantiles  	Estante 13	0	20	\N
 17034	9786077760238	Evolución de la arquitectura hotelera en acapulco guerrero 	Osbelia Alcaraz Morales	CONACYT	primera	Buenas	Arquitectura	Estante 4	1	30	\N
 17035	9786078093311	Ranking de felicidad en Mexico 2012	-	imaginamexico	primera	Buenas	Estudios regionales	Estante 10	1	50	\N
 17037	9786070265242	Continuidades, rupturas y emergencias	Alejandro Sehtman y Elizabeth Zenteno	UNAM	-	Buenas	Estudios regionales	Estante 11	1	40	\N
@@ -16175,7 +16173,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 17142	9780357891933	Cuidado emocional del niño hospitalizado	Varios	Prensa medica mexicana 	-	Buenas	Psicología	Estante 5	1	30	\N
 17144	9784871750608	Jaque Mate	Jeffrey Archer	Grijalbo	-	Buenas	Novelas	Estante 2	1	30	\N
 17146	9780553619638	El abuelo se quedo en casa	Adalberto Gutierrez	UdeG	-	Buenas	Novelas	Estante 2	1	20	\N
-17148	98398455049	Salga ya de su infelicidad	Guillerno Ortiz	Libreria Parroquial de Claveria	-	Buenas	Superación personal	Estante 1	1	15	\N
+17148	98398455049	Salga ya de su infelicidad	Guillerno Ortiz	libreria Parroquial de Claveria	-	Buenas	Superación personal	Estante 1	1	15	\N
 17149	9782829426827	El niño dislexico	Margarita Nieto	Prensa medica mexicana 	-	Buenas	Psicología	Estante 5	1	40	\N
 17150	9789681105235	Mujeres de 50	Daniela Di Segni	Plaza Janes	-	Buenas	Superación personal	Estante 1	0	20	\N
 17151	97820071626	Jesus es el mesias	Emiliano Tardif	Kerygama	-	Buenas	Religión	Estante 1	1	10	\N
@@ -16461,7 +16459,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 17464	9789701038093	Los contratos civiles y sus generalidades	Ricardo Treviño García	McGrawHill	sexta	Buenas	Derecho	Estante 6	1	80	\N
 17465	971107193468	La historia de la iglesia	F. Degalli	Codex	1963	Buenas	Historia	Estante 6	1	90	\N
 17466	9788440674050	Los rescatadores en cangurolandia 	Varios	Ediciones B	-	Buenas	Infantiles  	Estante 13	0	60	\N
-17468	9789072716491	El conquistador de papel	Ricardo Ferre D'Amare	-	-	Usado	Poesía	Estante 3	1	20	\N
+17468	9789072716491	El conquistador de papel	Ricardo Ferre DAmare	-	-	Usado	Poesía	Estante 3	1	20	\N
 17469	9786078490561	Aguila del barro	Alberto de Casillas	Proteo	-	Buenas	Política	Estante 6	1	20	\N
 17471	9789706461728	Manual de redaccion conversacion y oratioria	Daniel Diep Diep	PAC	-	Buenas	Literatura	Estante 4	1	20	\N
 17472	9786567850623	Panorama literario de los pueblo nahuas	Angel Maria Garibay K.	Purrua	-	Usado	Literatura	Estante 3	1	20	\N
@@ -16663,7 +16661,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 17688	978065605007	Oficios y personas 	Gladys M. Ilarregui	Los signos del tiempo editores	-	Buenas	Literatura	Estante 3	1	20	\N
 17689	9789685686068	Como escribir y publicae un articulo cientifico	Varios	Nieto editores	-	Buenas	Ciencia	Estante 10	1	20	\N
 17690	9789681507343	Cómo el hombre llegó a ser gigante 	Varios	Editores mexicanos unidos	tercera reimpresion	buenas	Historia	Estante 6	1	30	\N
-17691	9780571144150	Infante's inferno	C. Cabrera Infante	faber and faber	primera	Usado	Novelas en inglés	Estante 8	1	40	\N
+17691	9780571144150	Infantes inferno	C. Cabrera Infante	faber and faber	primera	Usado	Novelas en inglés	Estante 8	1	40	\N
 17692	9789701034934	Las franquicias, un efecto de la globalización: 100 preguntas. 100 respuestas: l	Varios	McGrawHill	primera	Buenas	Economía	Estante 5	1	30	\N
 17693	9789876121163	201 Para los Hijos 	Lilli russ	V & R	primera	Buenas	Poesía	Estante 4	1	30	\N
 17694	9781467550505	Yazmín	Francisco J. Marín	-	primera	Regular	Novelas	Estante 2	1	40	\N
@@ -16704,7 +16702,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 17731	9788432981319	Moviles de madera	-	ceac	-	Buenas	Infantiles  	Bodega	1	10	\N
 17732	9783074349206	La torre de los grillos	-	la torre de los grillos	-	Buenas	Infantiles  	Bodega	1	20	\N
 17733	9785980033729	Locos egregios	Juan Antonio Vallejo-Nagera	knoll	-	Buenas	Infantiles  	Bodega	1	20	\N
-17734	9785857940754	Ingles objectivo moderno	Varios	Libreria distribuidora porrua	-	Buenas	Educación     	Estante 9	1	15	\N
+17734	9785857940754	Ingles objectivo moderno	Varios	public distribuidora porrua	-	Buenas	Educación     	Estante 9	1	15	\N
 17735	9789625008196	Regalos para Papa	Ursula Kuehnemann	Kapelusz	-	Usado	Familia	Estante 1	1	15	\N
 17736	9787806632536	Sexualidad y planificacion familiar	Varios	Futuro lector	-	Buenas	Familia	Estante 1	1	20	\N
 17737	9781236493316	30 Grabados Conmemorativos	San Juan de la Cruz	Exma. Diputacion provincial de avila	-	Buenas	Artes	Estante 4	1	30	\N
@@ -17060,7 +17058,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 18120	9785560045906	La vision cristiana 	John Powell S.J.	Buena Presa	primera	Usado	Religión	Estante 1	1	20	\N
 18121	9782197225107	Porfia y autenticidad 	David Piñera Ramirez	Universidad de Guadalajara	primera	Usado	Temas Varios	Estante 12	1	50	\N
 18122	9783354508842	La expulcion de los jesuitas de San Luis de la paz y Guanajuato	Isauro Rionda Arreguin 	-	primera	Buenas	Religión	Estante 1	1	20	\N
-18124	9780510495640	Orientaciones Liturgicas, canonicas y morales para los ministros extraordinarios	Tomas Guzman Zamudio	Libreria Parroquial de Claveria	tercera	Usado	Religión	Estante 1	1	20	\N
+18124	9780510495640	Orientaciones Liturgicas, canonicas y morales para los ministros extraordinarios	Tomas Guzman Zamudio	libreria Parroquial de Claveria	tercera	Usado	Religión	Estante 1	1	20	\N
 18125	9780142402511	Looking for alaska 	John Green	speak	-	Buenas	Novelas en inglés	Estante 8	0	70	\N
 18127	9789507248245	La mujer sola 	Alcira Mariam Alizade	lumen	.	Usado	Estudios y ensayos	Estante 11	1	90	\N
 18128	9786078019571	El género a debate. Reflexiones teóricas y metodológicas multidisciplinarias	José Carlos Cervantes Ríos	Universidad de Guadalajara	primera	Bueno	Temas Varios	Estante 5	0	20	\N
@@ -17201,7 +17199,7 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 18285	044903007995	Running with scissors	Augusten Burroughs	Picador	2002	Usado	Novelas en inglés	Estante 8	1	40	\N
 18286	9780679764021	Snow falling on cedars	David Guterson	vintage	1995	Regular	Novelas en inglés	Estante 8	1	50	\N
 18287	9781594483547	The ten year nap	Meg Wolitzer	Riverhead books new york	2008	Regular	Novelas en inglés	Estante 8	1	50	\N
-18289	9781416596363	Are you there, vodka? It's me, chealsea	Chelsea Handler	simon&schuster	2008	Buenas	Novelas en inglés	Estante 8	1	40	\N
+18289	9781416596363	Are you there, vodka? Its me, chealsea	Chelsea Handler	simon&schuster	2008	Buenas	Novelas en inglés	Estante 8	1	40	\N
 18290	9781577314769	20 something, 20 everthing	Christine Hassler	New world library	2005	Usado	Novelas en inglés	Estante 8	1	45	\N
 18291	9780060958022	Five quarters of the orange	Joanne Harris	Perennial	2001	Regular	Novelas en inglés	Estante 8	1	35	\N
 18292	9780767928076	Family tree	Barbara Delinsky	Broadway box	2007	usado	Novelas en inglés	Estante 8	1	40	\N
@@ -17293,11 +17291,11 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 18393	9780470461303	The world is open 	Curtis J. Bonk	Jossey-Bass	primera	Buenas	Temas Varios en Ingl	Estante 8	1	120	\N
 18394	9781892112606	Help meet	Debi Pearl	NGJ	-	Usado	Temas Varios en Ingl	Estante 8	1	60	\N
 18395	9780425284704	Before we were yours	Lisa Wingate	Ballantine books	-	Usado	Novelas en inglés	Estante 8	1	40	\N
-18396	9780316043410	Undoing depression 	Richard O'connor	Little, Brown 	-	Usado	Temas Varios en Ingl	Estante 8	1	60	\N
+18396	9780316043410	Undoing depression 	Richard Oconnor	Little, Brown 	-	Usado	Temas Varios en Ingl	Estante 8	1	60	\N
 18397	076714006508	Prince charming	Julie Garwood	pocket books	-	Usado	Novelas en inglés	Estante 8	1	30	\N
 18398	9780722184219	Three women	Nancy Thayler	sphere	-	Usado	Novelas en ingles	Estante 8	1	40	\N
 18399	9780690591798	Henry of Navarre by hesketh pearson	Varios	-	-	Usado	Temas Varios en Ingl	Estante 8	1	50	\N
-18400	9780712609944	Harriette Wilson's memoirs	-	the century lives &letters	primera	Usado	Temas Varios en Ingl	Estante 8	1	60	\N
+18400	9780712609944	Harriette Wilsons memoirs	-	the century lives &letters	primera	Usado	Temas Varios en Ingl	Estante 8	1	60	\N
 18401	9780446552448	Chelsea Chelsea bang bang	Chelsea Handler	Grand Central	primera	Buenas	Temas Varios en Ingl	Estante 8	1	60	\N
 18402	9780451213099	On wings of eagles	Ken Follett	new American library	primera	Buenas	Temas Varios en Ingl	Estante 8	1	90	\N
 18403	9789681101633	Linda 67 historia de un crimen 	Fernando del Paso	Plaza y Janes	primera	Buenas	Novelas	Estante 2	1	50	\N
@@ -17410,13 +17408,13 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 18519	9784911028186	Los cinco minutos de maria	Alfonso Milagro	Claretiana	-	Buenas	Religión	Estante 1	1	20	\N
 18520	9788204386786	Espiritualidad de las parabolas del evangelio	Alfredo Vizcarra Patino	Ediciones Paulinas	-	Buenas	Religión	Estante 1	0	10	\N
 18521	9786309149985	Guia del conductor	V. Hernandez Garcia	Ediciones Paulinas	-	Buenas	Religión	Estante 1	1	15	\N
-18522	9789243502731	Maria, el carpintero y el niño	Pedro Ma De Iraolagoitia	Libreria Parroquial de Claveria	-	Buenas	Religión	Estante 1	1	15	\N
+18522	9789243502731	Maria, el carpintero y el niño	Pedro Ma De Iraolagoitia	libreria Parroquial de Claveria	-	Buenas	Religión	Estante 1	1	15	\N
 18523	9789740500391	Santa Teresa del niño Jesus y la divina eucaristia	P.J. Jesus Ceja Alvarez	Ignzio Gomez Robledo, S.J.	-	Buenas	Religión	Estante 1	1	10	\N
 18524	9789687669649	Pan de angeles	R.P. Gerald T. Brennan	Buena Prensa	-	Buenas	Religión	Estante 1	1	10	\N
-18525	9782781688004	Documentos completos del vaticano 2	-	Libreria Parroquial de Claveria	-	Usado	Religión	Estante 1	1	40	\N
-18526	9783073568745	La iglesia en la actual transformacion de america latina a la luz del concilio	Varios	Libreria Parroquial de Claveria	-	Usado	Religión	Estante 1	1	15	\N
+18525	9782781688004	Documentos completos del vaticano 2	-	public Parroquial de Claveria	-	Usado	Religión	Estante 1	1	40	\N
+18526	9783073568745	La iglesia en la actual transformacion de america latina a la luz del concilio	Varios	public Parroquial de Claveria	-	Usado	Religión	Estante 1	1	15	\N
 18527	9786072904743	Despertando Vidas	-	Aaron Acosta	-	Buenas	Superación personal	Estante 1	1	30	\N
-18528	9784625382574	Corazon de Jesus oceano infinito de misericordia	-	Libreria Parroquial de Claveria	-	Buenas	Religión	Estante 1	1	5	\N
+18528	9784625382574	Corazon de Jesus oceano infinito de misericordia	-	libreria Parroquial de Claveria	-	Buenas	Religión	Estante 1	1	5	\N
 18529	9781633184046	Vidas ejemplares	Varios	Buena Prensa	-	Buenas	Religión	Estante 1	1	20	\N
 18530	9788470682483	Mi vocacion es el amor	Jean Lafrance	editorial de espiritualidad	-	Buenas	Religión	Estante 1	1	20	\N
 18531	9783658315320	Florecillas de san francisco	Varios	Ediciones Paulinas	-	Buenas	Religión	Estante 1	1	15	\N
@@ -17459,15 +17457,15 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 18572	9784841539394	Gran enciclopedia universal Quid 	Varios	Promexa 	Primera 	Usado	Temas Varios	Estante 10	1	30	\N
 18573	9780143132172	The perfect nanny 	Leila Slimani	Penguin	primera	Regular	Novelas en inglés	Estante 8	1	60	\N
 18574	9781409184713	The ordnance survey puzzle tour of Britain	Ordnance Survey	TRAPEZE	primera	Buenas	Temas Varios en Ingl	Estante 8	1	80	\N
-18575	9780141039404	Easy way to stop smoking	Allen Carr's	Penguin	primera	Usado	Temas Varios en Ingl	Estante 8	1	60	\N
-18576	9781849909235	Spain 140 new rwcipes inspired by my journey	Rick Stein's	BBC Books	Primera 	Buenas	Cocina	Estante 4	0	40	\N
-18577	9780582772830	A people's story of the united states 	Howard Zinn	Pearson	-	Usado	Historia	Estante 8	1	90	\N
-18578	9785091373783	The artist's way mornin pages journal	Julia Cameron	Tarcher penguin	primera	Buenas	Temas Varios en Ingl	Estante 8	1	130	\N
-18579	9783099217221	The artist's way workbook	Julia Cameron	Tarcher penguin	primera	Buenas	Temas Varios en Ingl	Estante 8	1	120	\N
+18575	9780141039404	Easy way to stop smoking	Allen Carrs	Penguin	primera	Usado	Temas Varios en Ingl	Estante 8	1	60	\N
+18576	9781849909235	Spain 140 new rwcipes inspired by my journey	Rick Steins	BBC Books	Primera 	Buenas	Cocina	Estante 4	0	40	\N
+18577	9780582772830	A peoples story of the united states 	Howard Zinn	Pearson	-	Usado	Historia	Estante 8	1	90	\N
+18578	9785091373783	The artists way mornin pages journal	Julia Cameron	Tarcher penguin	primera	Buenas	Temas Varios en Ingl	Estante 8	1	130	\N
+18579	9783099217221	The artists way workbook	Julia Cameron	Tarcher penguin	primera	Buenas	Temas Varios en Ingl	Estante 8	1	120	\N
 18581	9780451166890	The pillars of the earth	Ken Follett	Signet Classics	-	Usado	Novelas en inglés	Estante 8	1	50	\N
 18582	9786079326302	La culpa y el calustro	Antonio Suarez	Ateneo ARS	-	Buenas	Novelas	Estante 2	1	30	\N
 18583	9788415828365	Proceso a Jesus	Jose Maria Ribas Alba 	Almuzara	primera	Buenas	Religión	Estante 1	1	150	\N
-18584	9781611800579	A beginner's guide to meditation	Rod Meade Sperry	Shambhala	primera	Buenas	Temas Varios en Ingl	Estante 8	1	100	\N
+18584	9781611800579	A beginners guide to meditation	Rod Meade Sperry	Shambhala	primera	Buenas	Temas Varios en Ingl	Estante 8	1	100	\N
 18585	752435750493	Los presidentes en su tinta por Naranjo	Julio Scherer Garcia	proceso	primera	Usado	Política	Estante 6	1	120	\N
 18586	9780312187453	The memoirs of cleopatra	Margaret George	Reading group gold	-	Buenas	Novelas en inglés	Estante 7	0	60	\N
 18587	9789707802926	Manual del Guerrero de la Luz	Paullo Coellho	Grijalbo	-	usado	Literatura	Estante 12	1	80	\N
@@ -17781,10 +17779,10 @@ COPY libreria.books (id, isbn, title, author, editorial, edition, conditions, cl
 
 
 --
--- Data for Name: clasifications; Type: TABLE DATA; Schema: libreria; Owner: dresan
+-- Data for Name: clasifications; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY libreria.clasifications (id, class, location) FROM stdin;
+COPY public.clasifications (id, class, location) FROM stdin;
 1	Educación     	Primer estante
 2	Arboles    	Exterior 
 3	Física 	Primer estante  
@@ -17862,10 +17860,10 @@ COPY libreria.clasifications (id, class, location) FROM stdin;
 
 
 --
--- Data for Name: clients; Type: TABLE DATA; Schema: libreria; Owner: dresan
+-- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY libreria.clients (id, name, email, number, preferences, intern) FROM stdin;
+COPY public.clients (id, name, email, number, preferences, intern) FROM stdin;
 8	Juan Carlos	sincorreo@jgls.com	2147483647	vampiros, anna rice	t
 9	Montserrat Esquivel	itrinidadesquivel@gmail.com	2147483647	novelas, novela historica, arte, 	t
 10	Ruth	procuracion@casacem.org	2147483647	Marketing, fotografía, novelas, clásicos	t
@@ -17887,10 +17885,10 @@ COPY libreria.clients (id, name, email, number, preferences, intern) FROM stdin;
 
 
 --
--- Data for Name: loan; Type: TABLE DATA; Schema: libreria; Owner: dresan
+-- Data for Name: loan; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY libreria.loan (id, amount, departure, entrance, client_id, import, status) FROM stdin;
+COPY public.loan (id, amount, departure, entrance, client_id, import, status) FROM stdin;
 1	1	2019-03-20	2019-04-04	10	0	entregado
 2	1	2019-03-26	2019-04-10	9	0	entregado
 3	1	2019-05-06	2019-05-21	10	0	entregado
@@ -17940,10 +17938,10 @@ COPY libreria.loan (id, amount, departure, entrance, client_id, import, status) 
 
 
 --
--- Data for Name: users; Type: TABLE DATA; Schema: libreria; Owner: dresan
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY libreria.users (id, name, email, number, password, administrator, recoverycode) FROM stdin;
+COPY public.users (id, name, email, number, password, administrator, recoverycode) FROM stdin;
 1	María Fernanda Sánchez	cultura@casacem.org	1	PR03C0V1A	t	\N
 2	Cynthia Mercado	cmercado@casacem.org	2	12345	t	\N
 3	Saory	saorygarcia1@gmail.com	3315180490	saory5	f	\N
@@ -17960,7 +17958,7 @@ COPY libreria.users (id, name, email, number, password, administrator, recoveryc
 15	Cesar Osvaldo Catón Garcia 	cesarcaton27@gmail.com	32	123456	f	\N
 16	Saul D. Flores 	ziober.bbx@gmail.com	3321116091	19951505	f	\N
 17	saul d. flores	zioner.bbx@gmail.com	3321116091	19951505	f	\N
-18	Fain 	fainfrench@hotmail.com	4294967295	Libreriafain	f	\N
+18	Fain 	fainfrench@hotmail.com	4294967295	publicfain	f	\N
 19	GAEL FERNANDO	gaelin00008@gmail.com	3311215106	Bodoques09	f	\N
 20	Liliana Abriz	informes@casacem.org	3331769525	casacem	f	\N
 21	Liliana	informes@casacem.org	3336154499	casacem376	f	\N
@@ -17977,7 +17975,7 @@ COPY libreria.users (id, name, email, number, password, administrator, recoveryc
 
 
 --
--- Data for Name: articles; Type: TABLE DATA; Schema: public; Owner: dresan
+-- Data for Name: articles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.articles (id, name, price) FROM stdin;
@@ -17986,7 +17984,7 @@ COPY public.articles (id, name, price) FROM stdin;
 
 
 --
--- Data for Name: movements; Type: TABLE DATA; Schema: public; Owner: dresan
+-- Data for Name: movements; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.movements (id, article, transaction_type, total, title, isbn, id_article, user_name, date, clients) FROM stdin;
@@ -18033,7 +18031,7 @@ COPY public.movements (id, article, transaction_type, total, title, isbn, id_art
 
 
 --
--- Data for Name: providers; Type: TABLE DATA; Schema: public; Owner: dresan
+-- Data for Name: providers; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.providers (id, rsocial, name, fname, type, payment, period, percentage, account) FROM stdin;
@@ -18042,7 +18040,7 @@ COPY public.providers (id, rsocial, name, fname, type, payment, period, percenta
 
 
 --
--- Data for Name: reservation; Type: TABLE DATA; Schema: public; Owner: dresan
+-- Data for Name: reservation; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public.reservation (id, book_id, user_id, reservation, due_date, book_title) FROM stdin;
@@ -18051,125 +18049,125 @@ COPY public.reservation (id, book_id, user_id, reservation, due_date, book_title
 
 
 --
--- Name: beneficiarios_id_seq; Type: SEQUENCE SET; Schema: libreria; Owner: dresan
+-- Name: beneficiarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('libreria.beneficiarios_id_seq', 2, true);
-
-
---
--- Name: clasificaciones_id_seq; Type: SEQUENCE SET; Schema: libreria; Owner: dresan
---
-
-SELECT pg_catalog.setval('libreria.clasificaciones_id_seq', 76, true);
+SELECT pg_catalog.setval('public.beneficiarios_id_seq', 2, true);
 
 
 --
--- Name: clientes_id_seq; Type: SEQUENCE SET; Schema: libreria; Owner: dresan
+-- Name: clasificaciones_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('libreria.clientes_id_seq', 29, true);
-
-
---
--- Name: libros_id_seq; Type: SEQUENCE SET; Schema: libreria; Owner: dresan
---
-
-SELECT pg_catalog.setval('libreria.libros_id_seq', 18945, true);
+SELECT pg_catalog.setval('public.clasificaciones_id_seq', 76, true);
 
 
 --
--- Name: prestamos_id_seq; Type: SEQUENCE SET; Schema: libreria; Owner: dresan
+-- Name: clientes_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('libreria.prestamos_id_seq', 45, true);
-
-
---
--- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: libreria; Owner: dresan
---
-
-SELECT pg_catalog.setval('libreria.usuarios_id_seq', 30, true);
+SELECT pg_catalog.setval('public.clientes_id_seq', 29, true);
 
 
 --
--- Name: articles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dresan
+-- Name: libros_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.libros_id_seq', 18945, true);
+
+
+--
+-- Name: prestamos_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.prestamos_id_seq', 45, true);
+
+
+--
+-- Name: usuarios_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.usuarios_id_seq', 30, true);
+
+
+--
+-- Name: articles_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.articles_id_seq', 1, true);
 
 
 --
--- Name: movements_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dresan
+-- Name: movements_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.movements_id_seq', 62, true);
 
 
 --
--- Name: providers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dresan
+-- Name: providers_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.providers_id_seq', 2, true);
 
 
 --
--- Name: reservation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: dresan
+-- Name: reservation_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
 SELECT pg_catalog.setval('public.reservation_id_seq', 9, true);
 
 
 --
--- Name: beneficiaries idx_24634_primary; Type: CONSTRAINT; Schema: libreria; Owner: dresan
+-- Name: beneficiaries idx_24634_primary; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.beneficiaries
+ALTER TABLE ONLY public.beneficiaries
     ADD CONSTRAINT idx_24634_primary PRIMARY KEY (id);
 
 
 --
--- Name: clasifications idx_24639_primary; Type: CONSTRAINT; Schema: libreria; Owner: dresan
+-- Name: clasifications idx_24639_primary; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.clasifications
+ALTER TABLE ONLY public.clasifications
     ADD CONSTRAINT idx_24639_primary PRIMARY KEY (id);
 
 
 --
--- Name: clients idx_24644_primary; Type: CONSTRAINT; Schema: libreria; Owner: dresan
+-- Name: clients idx_24644_primary; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.clients
+ALTER TABLE ONLY public.clients
     ADD CONSTRAINT idx_24644_primary PRIMARY KEY (id);
 
 
 --
--- Name: books idx_24671_primary; Type: CONSTRAINT; Schema: libreria; Owner: dresan
+-- Name: books idx_24671_primary; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.books
+ALTER TABLE ONLY public.books
     ADD CONSTRAINT idx_24671_primary PRIMARY KEY (id);
 
 
 --
--- Name: loan idx_24700_primary; Type: CONSTRAINT; Schema: libreria; Owner: dresan
+-- Name: loan idx_24700_primary; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.loan
+ALTER TABLE ONLY public.loan
     ADD CONSTRAINT idx_24700_primary PRIMARY KEY (id);
 
 
 --
--- Name: users idx_24710_primary; Type: CONSTRAINT; Schema: libreria; Owner: dresan
+-- Name: users idx_24710_primary; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY libreria.users
+ALTER TABLE ONLY public.users
     ADD CONSTRAINT idx_24710_primary PRIMARY KEY (id);
 
 
 --
--- Name: articles articles_pkey; Type: CONSTRAINT; Schema: public; Owner: dresan
+-- Name: articles articles_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.articles
@@ -18177,7 +18175,7 @@ ALTER TABLE ONLY public.articles
 
 
 --
--- Name: movements movements_pkey; Type: CONSTRAINT; Schema: public; Owner: dresan
+-- Name: movements movements_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.movements
@@ -18185,7 +18183,7 @@ ALTER TABLE ONLY public.movements
 
 
 --
--- Name: providers providers_pkey; Type: CONSTRAINT; Schema: public; Owner: dresan
+-- Name: providers providers_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.providers
@@ -18193,7 +18191,7 @@ ALTER TABLE ONLY public.providers
 
 
 --
--- Name: reservation reservation_pkey; Type: CONSTRAINT; Schema: public; Owner: dresan
+-- Name: reservation reservation_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.reservation
@@ -18201,11 +18199,11 @@ ALTER TABLE ONLY public.reservation
 
 
 --
--- Name: reservation reservation_fkey; Type: FK CONSTRAINT; Schema: public; Owner: dresan
+-- Name: reservation reservation_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.reservation
-    ADD CONSTRAINT reservation_fkey FOREIGN KEY (book_id) REFERENCES libreria.books(id) ON DELETE CASCADE;
+    ADD CONSTRAINT reservation_fkey FOREIGN KEY (book_id) REFERENCES public.books(id) ON DELETE CASCADE;
 
 
 --
